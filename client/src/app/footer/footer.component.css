@@ -1,0 +1,18 @@
+.footer-container {
+    margin-top: 2em;
+    background-color: white;
+    padding: 0.5em;
+}
+.coordonees {
+    text-align: center;
+    top: 30%;
+    position: relative;
+}
+hr {
+    width: 50%;
+    margin:auto;
+    margin-bottom: 1em;
+}
+.info-etudiant {
+    font-size: 12px;
+}

@@ -1,0 +1,18 @@
+.header-container {
+    margin-top: 2em;
+    height: 6em;
+    background-color: white;
+    padding:0.5em;
+}
+.welcome-msg,
+.logo-container {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.logo {
+    height: auto;
+    max-width: 80%;
+    position: relative;
+    bottom: 0.5em;
+}

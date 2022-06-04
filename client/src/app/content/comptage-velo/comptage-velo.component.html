@@ -1,0 +1,56 @@
+<div class="comptage-velo-container">
+    <div class="row">
+        <div class="col-8">
+            <h3><u>Comptages de vélo</u></h3>
+        </div>
+        <div class="trier col-4">
+            <label for="trier" class="trier-label">Trier par :</label>
+            <select [(ngModel)]="sortBy" name="trier" id="trier" (change)="sort()">
+                <option value="id">ID</option>
+                <option value="nom">Nom</option>
+                <option value="status">Status</option>
+                <option value="annee">Année implanté</option>
+            </select>
+            <button id="sort-order" (click)="setSortOrder()">
+              <div *ngIf="sortOrder == 'ascend'"><i class="fa fa-caret-up"></i></div>
+              <div *ngIf="sortOrder == 'descend'"><i class="fa fa-caret-down"></i></div>
+            </button>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <table class="table table-stripped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom du compteur</th>
+                <th scope="col">Status</th>
+                <th scope="col">Année implanté</th>
+                <th scope="col"><!-- espace pour afficher le logo de la carte --></th>
+                <th scope="col"><!-- espace pour afficher statistique --></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let compteur of compteurs">
+                <th scope="row">{{ compteur["id"] }}</th>
+                <td>{{ compteur["name"] }}</td>
+                <td>{{ compteur["status"] }}</td>
+                <td>{{ compteur["year_build"] }}</td>
+                <td>
+                  <button class="stats-search-btn" (click)="statsSearch(compteur)" ><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                </td>
+                <td><button class="stats-search-btn" (click)="statsSearch(compteur)" >Statistiques</button></td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="stats-search" *ngIf="showStatsSearch">
+          <h1>
+          <app-statistique></app-statistique>
+          </h1>
+        </div> 
+    </div>
+
+    
+    
+</div>

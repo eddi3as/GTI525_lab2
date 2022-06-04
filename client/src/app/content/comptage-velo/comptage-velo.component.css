@@ -1,0 +1,41 @@
+.comptage-velo-container {
+    margin-top: 2em;
+    background-color: white;
+    padding: 0.5em;
+}
+.trier {
+    position: relative;
+    bottom: 1em;
+}
+.trier-label {
+    margin-right: 15px;
+}
+.table {
+    display:block;
+    margin-top: 2em;
+    margin-left: 1em;
+    width: 98%;
+    font-size: 14px;
+    height: 460px;
+    overflow-y: scroll;
+    border-top: solid 3px rgba(20, 20, 20, 0.63);
+    border-bottom: solid 3px rgba(20, 20, 20, 0.63);
+}
+.fa-map-marker {
+    color: red;
+}
+
+.stats-search-btn {
+    border: none;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+.stats-search-btn:hover {
+    opacity: 1;
+}
+
+
+
+#sort-order {
+    border:none;
+}
