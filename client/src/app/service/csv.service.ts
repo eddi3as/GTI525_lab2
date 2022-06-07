@@ -31,7 +31,7 @@ export class CSVService {
   async compteursFromCSV(){
     let str: string = "";
     await this.http.get(compteursUrl, {responseType:"text"}).forEach(data => str = data);
-    const rows = str.split("\r\n").slice(1);
+    const rows = str.split("\n").slice(1);
     this.loadedCompteurs = compteursToJSON(rows);
     return this.loadedCompteurs;
   }
@@ -39,7 +39,7 @@ export class CSVService {
   async fontainesFromCSV(){
     let str: string = "";
     await this.http.get(fontainesUrl, {responseType:"text"}).forEach(data => str = data);
-    const rows = str.split("\r\n").slice(1);
+    const rows = str.split("\n").slice(1);
     this.loadedFontaines = fontainesToJSON(rows);
     return this.loadedFontaines;
   }
