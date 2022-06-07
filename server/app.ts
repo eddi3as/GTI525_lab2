@@ -20,7 +20,7 @@ class App {
   }
 
   private runScript(){
-    fs.readFile("./assets/counter_stats_2019.csv", "utf8", (err, data)=>{
+    fs.readFile("./assets/counter_stats_2019.csv", "utf8", (err, data)=>{//TODO schema for stats id, borne_id, count
       let rows = data.split("\n");
       let test = rows;
       rows.forEach(el => {
