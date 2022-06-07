@@ -27,7 +27,8 @@ import { MoreInfoComponent } from './content/more-info/more-info.component';
         MoreInfoComponent
     ],
     imports: [
-        BrowserModule,
+        NgModule,
+        BrowserModule.withServerTransition({ appId: 'my-app' }),
         AppRoutingModule,
         HttpClientModule,
         FormsModule
