@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { StatsCtrl } from '../controller/statsCtrl'
-import { DateUtils } from '../utils/DateUtils'
+import { Utils } from '../utils/utils'
 
 export class StatsRouter {
   private _router: Router;
@@ -44,11 +44,11 @@ export class StatsRouter {
     };
 
     if(debut){
-      filter["$gte"] = new Date(DateUtils.toISODate(debut));//debut 2020-01-01 00:00:00
+      filter["$gte"] = new Date(Utils.toISODate(debut));//debut 2020-01-01 00:00:00
     }
 
     if(fin){
-      filter["$lte"] = new Date(DateUtils.toISODate(fin));//fin 2020-02-05 00:00:00
+      filter["$lte"] = new Date(Utils.toISODate(fin));//fin 2020-02-05 00:00:00
     }
 
     let results = this._statsCtrl.getStats(filter);

@@ -1,6 +1,7 @@
 import debug from 'debug';
-import { connectToDatabase } from "./service/database.service"
 import App from './app';
+import { connectToDatabase } from "./service/database.service"
+import { Utils } from './utils/utils'
 
 debug('ts-express:server');
 
@@ -12,6 +13,7 @@ if (Number.isNaN(port)) {
 
 connectToDatabase().then(()=>{
     let server = App.listen(port, () => {
+        Utils.importCSV();
         console.info(`Serveur disponible à http://localhost:${port}`);
       });
     server.on('error', onError);
