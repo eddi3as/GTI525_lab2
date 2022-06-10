@@ -46,13 +46,36 @@ export class Utils{
     return db_data;
   }
   
-  public static toISODate(csv_date: string){
-    let date_arr = csv_date.split(" ");
-    let date_utc = date_arr[0].split("-");
-    let month = this. months[Number(date_utc[1]) - 1];
-    let final_date = date_utc[0] + " " + month + " " + date_utc[2] + " " + date_arr[1] + " UTC";
+  public static toISODate(csv_date: string){//generalize split for 20200101 and for 2020-01-01
+    let date_utc = csv_date.indexOf("-") != -1 ? this.getFromCSV(csv_date) : this.getFromParams(csv_date);
+    let final_date = date_utc[0] + " " + date_utc[1] + " " + date_utc[2] + " " + date_utc[3] + " UTC";
     const event = new Date(final_date);
     let date_iso = event.toISOString();
     return date_iso;
+  }
+
+  private static getFromCSV(csv_date: string) {
+    let data = [];
+    let date_arr = csv_date.split(" ");
+    let date_utc = date_arr[0].split("-");
+    let month = this. months[Number(date_utc[1]) - 1];
+    data[0] = date_utc[0]; 
+    data[1] = month; 
+    data[2] = date_utc[2]; 
+    data[3] = date_arr[1]; 
+    return data;
+  }
+
+  private static getFromParams(csv_date: string) {
+    let data = [];
+    let year = csv_date.substring(0, 4);
+    let tmp_month = csv_date.substring(4, 6);
+    let day = csv_date.substring(6, 8);
+    let month = this. months[Number(tmp_month) - 1];
+    data[0] = year; 
+    data[1] = month; 
+    data[2] = day; 
+    data[3] = "00:00:00"; 
+    return data;
   }
 }

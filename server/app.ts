@@ -1,7 +1,5 @@
 import express from 'express';
 import logger from 'morgan';
-//import cors from 'cors';
-
 import { compteurRoutes } from './routes/compteurRouter';
 import { fontaineRoutes } from './routes/fontaineRouter';
 import { statsRoutes } from './routes/statsRouter';
@@ -19,7 +17,6 @@ class App {
 
   private middleware(): void {
     this.expressApp.use(logger('dev') as express.RequestHandler);
-    //this.expressApp.use(cors);
     this.expressApp.use(express.json() as express.RequestHandler);
     this.expressApp.use(express.urlencoded({ extended: false }) as express.RequestHandler);
   }
