@@ -3,17 +3,14 @@
 ## Prerequisites
 
 #### Node.js
-#### Angular CLI 
 #### MongoDB 
 
 - Install <b>MongoDB Community Server with Compass</b> from https://www.mongodb.com/try/download/community
 (under On-premises  MondoDB locally)
-<br>
 - Install <b>The MongoDB Database Tools</b> https://www.mongodb.com/try/download/database-tools
-<br>
 - Create a db called <b>gti525</b>
 - Create collection <b>fontaines, compteurs, stats</b>
-
+## Importing CSV
 use a terminal to import excel for fontaines and compteurs <b> use the csv from this project folder</b>
 
 - navigate to the bin folder of the MongoDB Database Tools
