@@ -12,8 +12,8 @@ if (Number.isNaN(port)) {
 }
 
 connectToDatabase().then(()=>{
-    let server = App.listen(port, () => {
-        Utils.importCSV();
+    let server = App.listen(port, async () => {
+        await Utils.importCSV();
         console.info(`Serveur disponible à http://localhost:${port}`);
       });
     server.on('error', onError);

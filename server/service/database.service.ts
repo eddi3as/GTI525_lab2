@@ -21,4 +21,5 @@ export async function connectToDatabase () {
     collections.fontaines = fontaineCollection;
     
     console.log(`Successfully connected to database: ${db.databaseName} and collection: ${statsCollection.collectionName}`);
+    console.log(`waiting for localhost...`);
  }

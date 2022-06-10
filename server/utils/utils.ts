@@ -2,97 +2,57 @@ import { collections } from '../service/database.service'
 import fs from 'fs'
 
 export class Utils{
+    private static imported = "stats-imported";
     private static months = ["January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December"];
-
-    public static toISODate(csv_date: string){//TODO csv parsing dates
-        /* value needs to be 2019-01-01 00:00:00
-        //for search
-        const event = new Date('22 April 2020 12:22 UTC')
-        let tmp_f = new Date('01 January 2019 00:00:00 UTC').toISOString();
-        let tmp_e = new Date('19 February 2019 00:00:00 UTC').toISOString();
-
-        let results = await collections.stats.find({Date: 
-            {$gte: new Date(tmp_f),
-                $lte: new Date(tmp_e)}}).toArray();
-        
-        //for csv parsing    
-        let tmp = csv_date.split(" ");
-        let date_utc = tmp[0].split("-");
-        let month = months[Number(date_utc[1]) - 1];
-        let final_date = date_utc[0] + " "+month+" "+date_utc[2]+" "+ tmp[1]+" UTC";
-        const event = new Date(final_date);
-
-        let date_iso = event.toISOString();
-        */
-        //for csv parsing    
-        let date_arr = csv_date.split(" ");
-        let date_utc = date_arr[0].split("-");
-        let month = this. months[Number(date_utc[1]) - 1];
-        let final_date = date_utc[0] + " " + month + " " + date_utc[2] + " " + date_arr[1] + " UTC";
-        const event = new Date(final_date);
-        let date_iso = event.toISOString();
-       return date_iso;
-    }
-    
+                              "July", "August", "September", "October", "November", "December"];
  
-    public static async importCSV(){
-      let test = collections.stats;
-      let imported = await collections.stats.find({ID: "stats-imported"}).toArray();
-      if(imported.length == 0){
-        this.runscript();
-      }
-  }      
+  public static async importCSV(){
+    let imported = await collections.stats.find({borne_id: this.imported }).toArray();
+    if(imported.length == 0){
+      this.runscript();
+    }
+  }
+
   private static runscript() {
-      /*fs.readFile("./assets/stats_test.csv", "utf8", (err, data)=>{
-        let _id = "";
-        let converts = ["", "January", "February", "March", "April"]
-        let rows = data.split("\n");
-        let line = rows[0].split(",");
-        _id = line[1];
-        let rows_ = rows.splice(1);
-        let _data = [];
-        rows_.forEach(el => {
-          let line = el.split(",");
-          let date = line[0];
-          let counter = line[1];
-          let tmp = date.split(" ");
-          let date_utc = tmp[0].split("-");
-          let month = converts[Number(date_utc[1])];
-          let final_date = date_utc[0] + " "+month+" "+date_utc[2]+" "+ tmp[1]+" UTC";
-          const event = new Date(final_date);
-        //new Date(year, month, day, hours, minutes, seconds, milliseconds)
-        
-       // const event = new Date('22 April 2020 12:22 UTC')
-       // console.log(event.toString());
-       // console.log(event.toISOString());
-     
-          let test = event.toISOString();
-          _data.push({Date: new Date(test), borne_id: _id, count: counter});
-        });
-      collections.stats.insertMany(_data);
-    });*/
+    for (let index = 2019; index < 2022; index++) {
+      let array = this.getStats(index.toString());
+      collections.stats.insertMany(array);
+    }
+    collections.stats.insertOne({borne_id: this.imported, count: -1, Date: new Date() });
   }
 
- /*
+  private static getStats(csvDate: string) {
+    let fileStr = "./assets/counter_stats_" + csvDate + ".csv";
+    let data = fs.readFileSync(fileStr, "utf8");
+    let db_data = this.parseData(data);
+    return db_data;
+  }
 
-  private runScript(){
-    fs.readFile("./assets/counter_stats_2019.csv", "utf8", (err, data)=>{//TODO schema for stats id, borne_id, count
-      let rows = data.split("\n");
-      let test = rows;
-      rows.forEach(el => {
-        let line = el.split(",");
-        let date = line[0];
-        //new Date(year, month, day, hours, minutes, seconds, milliseconds)
-       
-        const event = new Date('22 April 2020 12:22 UTC')
-        console.log(event.toString());
-        console.log(event.toISOString());
-       
-        let test = new Date(2020, 1, 1, 20, 0, 0, 0).toISOString();
-      });
+  private static parseData(data: string) {
+    let db_data = [];
+    let allData = data.split("\n");
+    let ids = allData[0].split(",");
+    let rows = allData.splice(1);
+    rows.forEach(row =>{
+      let line = row.split(",");
+      let date = line[0];
+      const iso_date = this.toISODate(date);
+      for (let i = 1; i < line.length; i++) {
+        const link_id = ids[i];
+        const counter = line[i];
+        db_data.push({Date: new Date(iso_date), borne_id: link_id, count: counter})
+      }
     });
+    return db_data;
   }
- */
   
+  public static toISODate(csv_date: string){
+    let date_arr = csv_date.split(" ");
+    let date_utc = date_arr[0].split("-");
+    let month = this. months[Number(date_utc[1]) - 1];
+    let final_date = date_utc[0] + " " + month + " " + date_utc[2] + " " + date_arr[1] + " UTC";
+    const event = new Date(final_date);
+    let date_iso = event.toISOString();
+    return date_iso;
+  }
 }
