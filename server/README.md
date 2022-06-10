@@ -8,9 +8,7 @@
 
 - Install <b>MongoDB Community Server with Compass</b> from https://www.mongodb.com/try/download/community
 (under On-premises  MondoDB locally)
-<br>
 - Install <b>The MongoDB Database Tools</b> https://www.mongodb.com/try/download/database-tools
-<br>
 - Create a db called <b>gti525</b>
 - Create collection <b>fontaines, compteurs, stats</b>
 
