@@ -31,7 +31,7 @@ La carte doit être initialement centrée pour afficher l'ensemble des compteurs
 ## T2.1
 Implémenter une application dorsale
 - [x] Commencé
-- [] Fait
+- [x] Fait
   
 ## T2.2
 Il devra être possible d'accéder à l'application web au moyen de l'application dorsale,
@@ -61,9 +61,9 @@ Vous devez ajouter une option qui permet à l’utilisateur de choisir l’éche
 ## T4.1
 Intégrer les fichiers fournis pour créer une API qui répondra aux requêtes AJAX provenant du front-end.
 - [x] Commencé
-- [] Fait
+- [x] Fait
 
 ## T4.2
 Implémenter une première version de l’API compteur.
 - [x] Commencé
-- [] Fait
+- [x] Fait
