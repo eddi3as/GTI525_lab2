@@ -31,7 +31,7 @@ La carte doit être initialement centrée pour afficher l'ensemble des compteurs
 ## T2.1
 Implémenter une application dorsale
 - [x] Commencé
-- [] Fait
+- [x] Fait
   
 ## T2.2
 Il devra être possible d'accéder à l'application web au moyen de l'application dorsale,
