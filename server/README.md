@@ -10,7 +10,7 @@
 - Install <b>The MongoDB Database Tools</b> https://www.mongodb.com/try/download/database-tools
 - Create a db called <b>gti525</b>
 - Create collection <b>fontaines, compteurs, stats</b>
-
+## Importing CSV
 use a terminal to import excel for fontaines and compteurs <b> use the csv from this project folder</b>
 
 - navigate to the bin folder of the MongoDB Database Tools
