@@ -3,7 +3,6 @@
 ## Prerequisites
 
 #### Node.js
-#### Angular CLI 
 #### MongoDB 
 
 - Install <b>MongoDB Community Server with Compass</b> from https://www.mongodb.com/try/download/community
