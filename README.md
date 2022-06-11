@@ -1,12 +1,17 @@
 # GTI525 Labo 2
 ## Setup for Eco Velo
 ### Frontend
-- npm install
-- ng serve
-### Backend
-- npm install 
-- npm run build
-- npm start
+#### DEV
+    npm install
+    ng serve
+#### PROD
+    ng build
+###Backend 
+(SSR is now enabled view SERVER README)
+
+    npm install 
+    npm run build
+    npm run start
 
 
 # T1: Affichage des données sur une carte
