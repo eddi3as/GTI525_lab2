@@ -10,9 +10,14 @@ npm install -g @angular/cli
 ## Getting started with this App
 - pull project from Github
 - run npm install to get all ressources needed
+### DEV
 - run ng serve 
 - go to `http://localhost:4200/`
-
+### PROD (Server Side Rendering)
+- run ng build
+- cd to server
+- npm run build
+- npm run start
 #### Steps for new component
 - ng generate <component_name>
 - create service if need be

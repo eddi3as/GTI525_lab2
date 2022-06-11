@@ -21,7 +21,8 @@ use a terminal to import excel for fontaines and compteurs <b> use the csv from 
 
 
 ## Getting started with this App
-
+<b>Scripts are in place for SSR (server side rendering)</b>
+- if changes have been made to client run <b>ng build</b> before starting nodejs
 #### run commands:
     npm install
     npm run build
