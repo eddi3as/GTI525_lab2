@@ -4,10 +4,10 @@
         <h6 class="card-subtitle mb-2 text-muted">Plage de dates :</h6>
         <div class="input-group mb-3">
             <span class="input-group-text">De :</span>
-            <input type="text" class="form-control" placeholder="AAAA/MM/JJ" aria-label="De">
+            <input type="text" class="form-control" placeholder="AAAA-MM-JJ" aria-label="De" [(ngModel)]="dateFrom">
             <span class="input-group-text">À :</span>
-            <input type="text" class="form-control" placeholder="AAAA/MM/JJ" aria-label="A">
+            <input type="text" class="form-control" placeholder="AAAA-MM-JJ" aria-label="A" [(ngModel)]="dateTo">
         </div>
-        <button routerLink="/chart" type="button" class="btn btn-primary">afficher résultats</button>
+        <button type="button" class="btn btn-primary" (click)="setInfo()">Afficher</button>
     </div>
 </div>

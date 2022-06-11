@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration, ChartItem } from 'chart.js';
-//import {Chart, ChartConfiguration, ChartItem, registerables} from 'node_modules/chart.js'
 
 @Component({
   selector: 'app-chart',
@@ -12,6 +11,11 @@ export class ChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let jsonObj = {};
+    let data = localStorage.getItem("stats");
+    if(data != null){
+      jsonObj = JSON.parse(data);
+    }
     this.createChart()
   }
   private createChart() {

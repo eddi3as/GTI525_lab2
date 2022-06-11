@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Compteur } from 'src/app/models/compteur';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-statistique',
@@ -7,14 +8,23 @@ import { Compteur } from 'src/app/models/compteur';
   styleUrls: ['./statistique.component.css']
 })
 export class StatistiqueComponent implements OnInit {
+  @Input() cmpt: Compteur | undefined; 
+  dateFrom!: string;
+  dateTo!: string;
 
-  constructor() { }
+  constructor(private readonly router: Router) { }
 
   ngOnInit(): void {
   }
 
-  affiche(compteurs: Compteur): void {
-    
+  setInfo(): void {
+    let info = {
+      borne_id: this.cmpt?.id,
+      debut: this.dateFrom,
+      fin: this.dateTo
+    }
+    localStorage.setItem("stats", JSON.stringify(info));
+    this.router.navigateByUrl("/chart");
   }
 
 }

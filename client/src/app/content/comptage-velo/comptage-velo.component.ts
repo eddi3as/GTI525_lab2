@@ -13,6 +13,7 @@ export class ComptageVeloComponent implements OnInit {
     sortOrder = "ascend";
     sortBy = "id";
     showStatsSearch: boolean = false;
+    selectedCmpt: Compteur | undefined;
 
     constructor(private csvService: CSVService) { }
 
@@ -42,6 +43,7 @@ export class ComptageVeloComponent implements OnInit {
     }
 
     statsSearch(compteur: Compteur) {
+      this.selectedCmpt = compteur;
       this.showStatsSearch = true;
     }
 }
