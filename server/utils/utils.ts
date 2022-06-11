@@ -46,7 +46,7 @@ export class Utils{
     return db_data;
   }
   
-  public static toISODate(csv_date: string){//generalize split for 20200101 and for 2020-01-01
+  public static toISODate(csv_date: string){
     let date_utc = csv_date.indexOf("-") != -1 ? this.getFromCSV(csv_date) : this.getFromParams(csv_date);
     let final_date = date_utc[0] + " " + date_utc[1] + " " + date_utc[2] + " " + date_utc[3] + " UTC";
     const event = new Date(final_date);

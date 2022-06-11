@@ -49,16 +49,16 @@ serveur web devra servir l'ensemble des ressources demandées (ex., HTML, CSS, J
 La vue Statistiques des comptages vélos devra s’afficher lorsque l’utilisateur cliquera sur l’un
 des liens/buttons Statistiques d’un compteur, et que l’utilisateur saisit les dates de recherche
 souhaités. Vous devez inclure un bouton de retour vers l’arrière. Si ce bouton est cliqué, la page “Comptages de vélos” est affiché.
-- [] Commencé
+- [x] Commencé
 - [] Fait
 ## T3.2 Maxime
 La vue Statistiques des comptages vélos doit afficher des informations sur la période
 recherchée (début et fin) et un graphique avec les informations concernant le nombre de passages le long de la période recherchée. Voir l’Annexe 2.
-- [] Commencé
+- [x] Commencé
 - [] Fait
 ## T3.3 Maxime
 Vous devez ajouter une option qui permet à l’utilisateur de choisir l’échelle du graphique (jours, semaines, mois)
-- [] Commencé
+- [x] Commencé
 - [] Fait
 
 # T4: API dorsale pour les comptages vélos
