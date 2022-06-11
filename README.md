@@ -1,12 +1,12 @@
 # GTI525 Labo 2
 ## Setup for Eco Velo
-### Frontend
+## Frontend
 #### DEV
     npm install
     ng serve
 #### PROD
     ng build
-###Backend 
+## Backend 
 (SSR is now enabled view SERVER README)
 
     npm install 
