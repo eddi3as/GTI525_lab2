@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +14,7 @@ import { PointInteretComponent } from './content/point-interet/point-interet.com
 import { FooterComponent } from './footer/footer.component';
 import { StatistiqueComponent } from './content/statistique/statistique.component';
 import { MoreInfoComponent } from './content/more-info/more-info.component';
+import { ChartComponent } from './content/chart/chart.component';
 
 @NgModule({
     declarations: [
@@ -24,13 +26,15 @@ import { MoreInfoComponent } from './content/more-info/more-info.component';
         PointInteretComponent,
         FooterComponent,
         StatistiqueComponent,
-        MoreInfoComponent
+        MoreInfoComponent,
+        ChartComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgChartsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
