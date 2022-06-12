@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Compteur } from '../models/compteur';
+import { HttpClient } from '@angular/common/http';
 import { compteursToJSON, fontainesToJSON } from '../../utils/utils';
 
 let compteursUrl = 'assets/compteurs.csv';

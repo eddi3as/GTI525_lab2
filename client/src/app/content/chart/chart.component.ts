@@ -10,7 +10,7 @@ import { StatsService } from 'src/app/services/stats.service';
 })
 export class ChartComponent implements OnInit {
 
-  constructor(private statsService: StatsService) { }
+  constructor(private service: StatsService) { }
   stats: any;
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class ChartComponent implements OnInit {
     if(data != null)
       jsonObj = JSON.parse(data);
 
-    this.statsService.getStats(jsonObj).subscribe((data: any) =>{
+    this.service.getStats(jsonObj).subscribe((data: any) =>{
       this.stats = JSON.parse(data.result);
       console.log("this.stats[0] first element");
       console.log(this.stats[0]);

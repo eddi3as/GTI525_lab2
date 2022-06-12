@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { CSVService } from 'src/app/services/csv.service';
+import { FontaineService } from 'src/app/services/fontaines.service';
 
 @Component({
   selector: 'app-point-interet',
@@ -9,14 +9,21 @@ import { CSVService } from 'src/app/services/csv.service';
 })
 export class PointInteretComponent implements OnInit {
   fontaines: any[] = [];
+  fnt_arr: any;
   showMoreInfo: boolean = false;
   selectedFontaine: any;
 
-  constructor(private csvService: CSVService) { }
+  constructor(private csvService: CSVService, private service: FontaineService) { }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     this.fontaines = await this.csvService.getFontaines();
-    console.log(this.fontaines)
+    //API CALL for IT-3
+    /*
+    this.service.getFontaines().subscribe((data: any) => {
+      this.fnt_arr = JSON.parse(data.result);
+      console.log(this.fnt_arr[0]);
+    });
+    */
   }
 
   statsSearch() {}

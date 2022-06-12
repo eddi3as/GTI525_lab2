@@ -7,11 +7,13 @@ import { StatsDTO } from '../models/statsDTO';
   providedIn: 'root'
 })
 export class StatsService {
+  private url = environment.apiKey + '/stats/';
+
   constructor(private http: HttpClient) { }
 
   /** GET Stats from the db */
   getStats(info: StatsDTO) {
-    let statsUrl = environment.apiKey + '/stats/' + info.borne_id.toString();
+    let statsUrl = this.url + info.borne_id.toString();
     //TODO params check
     let queryParams = new HttpParams();
     queryParams = queryParams.append("debut", info.debut);

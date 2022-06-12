@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Compteur } from 'src/app/models/compteur';
 import { CSVService } from 'src/app/services/csv.service';
+import { CompteurService } from 'src/app/services/compteurs.service';
 
 @Component({
     selector: 'app-comptage-velo',
@@ -10,15 +10,23 @@ import { CSVService } from 'src/app/services/csv.service';
 })
 export class ComptageVeloComponent implements OnInit {
     compteurs: any[] = [];
+    cmpt_arr: any;
     sortOrder = "ascend";
     sortBy = "id";
     showStatsSearch: boolean = false;
     selectedCmpt: Compteur | undefined;
 
-    constructor(private csvService: CSVService) { }
+    constructor(private csvService: CSVService, private service: CompteurService) { }
 
     async ngOnInit() {
         this.compteurs = await this.csvService.getCompteurs();
+        //API CALL for IT-3
+        /*
+        this.service.getCompteurs().subscribe((data: any) =>{
+          this.cmpt_arr = JSON.parse(data.result);
+          console.log(this.cmpt_arr[0]);
+        });
+        */
     }
 
     setSortOrder() {

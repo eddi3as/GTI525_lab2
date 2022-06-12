@@ -8,7 +8,7 @@ export class Utils{
  
   public static async importCSV(){
     let imported = await collections.stats.find({borne_id: this.imported }).toArray();
-    if(imported.length == 0){
+    if(imported.length === 0){
       this.runscript();
     }
   }

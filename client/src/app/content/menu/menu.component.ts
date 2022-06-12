@@ -20,7 +20,6 @@ export class MenuComponent implements OnInit {
 
     getClassForButtonColor(pageUrl: string): string {
         let buttonClass = "btn-light"
-        console.log(pageUrl, " == ", this.currentUrl)
         if(pageUrl === this.currentUrl)
             buttonClass = "btn-primary"
         return buttonClass + " btn btn-block menu-button"
