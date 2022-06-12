@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { CSVService } from 'src/app/service/csv.service';
+import { CSVService } from 'src/app/services/csv.service';
 
 @Component({
   selector: 'app-point-interet',

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration, ChartItem } from 'chart.js';
+import { StatsDTO } from 'src/app/models/statsDTO';
+import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
   selector: 'app-chart',
@@ -8,16 +10,28 @@ import { Chart, ChartConfiguration, ChartItem } from 'chart.js';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private statsService: StatsService) { }
+  stats: any;
 
-  ngOnInit(): void {
-    let jsonObj = {};
+  ngOnInit() {
+    let jsonObj: StatsDTO = {
+      borne_id: 0,
+      debut: "",
+      fin: ""
+    };
     let data = localStorage.getItem("stats");
-    if(data != null){
+
+    if(data != null)
       jsonObj = JSON.parse(data);
-    }
-    this.createChart()
+
+    this.statsService.getStats(jsonObj).subscribe((data: any) =>{
+      this.stats = JSON.parse(data.result);
+      console.log("this.stats[0] first element");
+      console.log(this.stats[0]);
+      this.createChart()
+    });
   }
+
   private createChart() {
     const data = {
       labels: ['January','February','March','April','May'],

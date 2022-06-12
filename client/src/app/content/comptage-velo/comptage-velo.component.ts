@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Compteur } from 'src/app/models/compteur';
-import { CSVService } from 'src/app/service/csv.service';
+import { CSVService } from 'src/app/services/csv.service';
 
 @Component({
     selector: 'app-comptage-velo',
