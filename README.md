@@ -47,7 +47,7 @@ Il devra être possible d'accéder à l'application web au moyen de l'applicatio
 c'est-à-dire via une URL servie par votre serveur web (par exemple, http://localhost:8080/). Votre
 serveur web devra servir l'ensemble des ressources demandées (ex., HTML, CSS, JS, images, etc.).
 - [x] Commencé
-- [] Fait
+- [x] Fait
 
 # T3: Vue des Statistiques de comptages vélos
 ## T3.1 Maxime
