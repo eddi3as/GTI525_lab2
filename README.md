@@ -7,11 +7,17 @@
 #### PROD
     ng build
 ## Backend 
+#### PROD
 (SSR is now enabled view SERVER README)
+
+<b>ng build (RUN THIS CMD in client first)</b>
 
     npm install 
     npm run build
     npm run start
+#### DEV
+    npm run build-dev
+    npm run start-dev
 
 
 # T1: Affichage des données sur une carte
