@@ -18,8 +18,10 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.expressApp.use(express.static(path) as express.RequestHandler);
-    this.expressApp.use(cors(corsOptions));
+    if(this.isInProd()){
+      this.expressApp.use(express.static(path) as express.RequestHandler);
+      this.expressApp.use(cors(corsOptions));
+    }
   }
 
   private middleware(): void {
@@ -28,11 +30,19 @@ class App {
     this.expressApp.use(express.urlencoded({ extended: true }) as express.RequestHandler);
   }
 
+  private isInProd(){
+    return process.env.NODE_ENV.trim() == 'production';
+  }
+
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
     router.get('/', (req, res, next) => {
-      res.sendFile(path + "index.html");
+      if(this.isInProd()){
+        res.sendFile(path + "index.html");
+      }else{
+        res.send("GTI525 server running!")
+      }
     });
 
     this.expressApp.use('/', router);  // routage de base
