@@ -21,6 +21,9 @@ class App {
     if(this.isInProd()){
       this.expressApp.use(express.static(path) as express.RequestHandler);
       this.expressApp.use(cors(corsOptions));
+    }else{
+      
+      this.expressApp.use(cors());
     }
   }
 
