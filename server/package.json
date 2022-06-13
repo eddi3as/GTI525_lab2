@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -b --verbose && npm run copyviews && npm run copyassets",
-    "build-dev": "tsc -b --verbose",
+    "build": "tsc -b --verbose && npm run build-dev",
+    "build-dev": "tsc -b --verbose && npm run copyviews",
     "copyviews": "copyfiles --all ./views/* ./dist",
     "copyassets": "copyfiles --all ./views/assets/* ./dist",
     "start-dev": "SET NODE_ENV=dev && node dist/index.js",
