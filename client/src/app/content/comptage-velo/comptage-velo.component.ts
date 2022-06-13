@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Compteur } from 'src/app/models/compteur';
 import { CSVService } from 'src/app/services/csv.service';
 import { CompteurService } from 'src/app/services/compteurs.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-comptage-velo',
@@ -16,10 +17,13 @@ export class ComptageVeloComponent implements OnInit {
     showStatsSearch: boolean = false;
     selectedCmpt: Compteur | undefined;
 
-    constructor(private csvService: CSVService, private service: CompteurService) { }
+    constructor(private csvService: CSVService,
+                private service: CompteurService,
+                private ngxService: NgxSpinnerService) { }
 
     async ngOnInit() {
-        this.compteurs = await this.csvService.getCompteurs();
+      this.ngxService.show();
+      this.compteurs = await this.csvService.getCompteurs();
         //API CALL for IT-3
         /*
         this.service.getCompteurs().subscribe((data: any) =>{
@@ -27,6 +31,7 @@ export class ComptageVeloComponent implements OnInit {
           console.log(this.cmpt_arr[0]);
         });
         */
+      this.ngxService.hide();
     }
 
     setSortOrder() {

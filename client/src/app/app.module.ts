@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgChartsModule } from 'ng2-charts';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,9 +36,12 @@ import { ChartComponent } from './content/chart/chart.component';
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        NgChartsModule
+        NgChartsModule,
+        BrowserAnimationsModule,
+        NgxSpinnerModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

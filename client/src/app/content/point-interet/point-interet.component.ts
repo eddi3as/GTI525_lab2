@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CSVService } from 'src/app/services/csv.service';
 import { FontaineService } from 'src/app/services/fontaines.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-point-interet',
@@ -13,9 +14,12 @@ export class PointInteretComponent implements OnInit {
   showMoreInfo: boolean = false;
   selectedFontaine: any;
 
-  constructor(private csvService: CSVService, private service: FontaineService) { }
+  constructor(private csvService: CSVService,
+              private service: FontaineService,
+              private ngxService: NgxSpinnerService) { }
 
   async ngOnInit() {
+    this.ngxService.show();
     this.fontaines = await this.csvService.getFontaines();
     //API CALL for IT-3
     /*
@@ -24,6 +28,7 @@ export class PointInteretComponent implements OnInit {
       console.log(this.fnt_arr[0]);
     });
     */
+    this.ngxService.hide();
   }
 
   statsSearch() {}
