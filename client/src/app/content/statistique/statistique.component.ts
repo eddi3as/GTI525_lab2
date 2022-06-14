@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Compteur } from 'src/app/models/compteur';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { StatsService } from 'src/app/services/stats.service';
+import { StatsSearch } from 'src/app/models/statssearch';
 
 @Component({
   selector: 'app-statistique',
@@ -11,28 +14,30 @@ export class StatistiqueComponent implements OnInit {
   @Input() cmpt: Compteur | undefined; 
   dateFrom!: string;
   dateTo!: string;
+  stats: any[] = [];//TODO delete after tests
 
-  constructor(private readonly router: Router) { }
+  constructor(private router: Router,
+              private service: StatsService,
+              private ngxService: NgxSpinnerService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   setInfo(): void {
-    let info = {
+    this.ngxService.show();
+    let info : StatsSearch = {
       borne_id: this.cmpt?.id,
       debut: this.dateFrom,
       fin: this.dateTo
-    }
-    localStorage.setItem("stats", JSON.stringify(info));
-    //CALL API FROM THIS MODULE & PASS ARRAY TO CHART
-    /*
-    this.router.navigate(['/chart'], {
-      state: {
-        frontEnd: JSON.stringify({ framwork: 'Angular', version: '9' }),
-        site: 'edupala.com'
-      } 
-    });
-    */
-  }
+    };
 
+    this.service.getStats(info).subscribe((data: any) =>{
+      this.stats = JSON.parse(data.result);//TODO delete after tests
+      console.log("this.stats[0] first element");//TODO delete after tests
+      console.log(this.stats[0]);//TODO delete after tests
+      this.ngxService.hide();
+      this.router.navigate(['/chart'], {
+        state: { result: data.result } 
+      });
+    });
+  }
 }

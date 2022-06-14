@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { StatsDTO } from '../models/statsDTO';
+import { StatsSearch } from '../models/statssearch';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class StatsService {
   constructor(private http: HttpClient) { }
 
   /** GET Stats from the db */
-  getStats(info: StatsDTO) {
-    let statsUrl = this.url + info.borne_id.toString();
+  getStats(info: StatsSearch) {
+    let statsUrl = this.url + info.borne_id?.toString();
     //TODO params check
     let queryParams = new HttpParams();
     queryParams = queryParams.append("debut", info.debut);

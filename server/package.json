@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "stop": "taskkill /f /im node.exe",
     "build": "tsc -b --verbose && npm run build-dev",
     "build-dev": "tsc -b --verbose && npm run copyviews",
     "copyviews": "copyfiles --all ./views/* ./dist",
