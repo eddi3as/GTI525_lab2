@@ -47,7 +47,9 @@ export class ChartComponent implements OnInit {
           beginAtZero: true,
           display: false
         }
-      }
+      },
+      responsive: true,
+      maintainAspectRatio: false
     };
     const config: ChartConfiguration = {
       type: 'line',
