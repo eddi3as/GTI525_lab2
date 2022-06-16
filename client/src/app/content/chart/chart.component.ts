@@ -11,6 +11,8 @@ import { StatsService } from 'src/app/services/stats.service';
 export class ChartComponent implements OnInit {
   stats: any[] = [];
   routeState: any;
+  dateFrom: string | undefined;
+  dateTo: string | undefined;
 
   constructor(private service: StatsService, private router: Router) {
     if (this.router.getCurrentNavigation()?.extras.state) {
@@ -26,8 +28,10 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("this.stats[0] first element");//TODO delete after tests
-    console.log(this.stats[0]);//TODO delete after tests
+    this.dateFrom = "01-jan-2019";
+    this.dateTo = "01-jan-2020";
+  //  console.log("this.stats[0] first element");//TODO delete after tests
+  //  console.log(this.stats[0]);//TODO delete after tests
     this.createChart();
   }
 

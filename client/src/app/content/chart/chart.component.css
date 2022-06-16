@@ -1,3 +1,9 @@
 .chart-container {
     background-color: white;
 }
+button{
+	float: right;
+}
+.h2{
+	float: left;
+}
