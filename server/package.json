@@ -11,8 +11,8 @@
     "build-dev": "tsc -b --verbose && npm run build-dev",
     "copyviews": "copyfiles --all ./* ./dist",
     "copyassets": "copyfiles --all ./views/assets/* ./dist",
-    "start": "export NODE_ENV=production && node dist/index.js",
-    "start-dev": "export NODE_ENV=dev && npm run clean && npm run build && node dist/index.js"
+    "start": "SET NODE_ENV=production && node dist/index.js",
+    "start-dev": "SET NODE_ENV=dev && npm run clean && npm run build && node dist/index.js"
   },
   "author": "Equipe 8 GTI525",
   "license": "ISC",
