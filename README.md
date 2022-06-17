@@ -8,7 +8,6 @@
     ng build
 ## Backend 
 #### DEV
-    npm run build-dev
     npm run start-dev
 #### PROD
 (SSR is now enabled view SERVER README)
