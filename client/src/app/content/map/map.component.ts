@@ -9,7 +9,8 @@ import * as leaf from 'leaflet';
 export class MapComponent implements OnInit {
   private map!: leaf.Map;
   private centroid: L.LatLngExpression = [45.5016889, -73.567255999999]; //MTL
-  constructor() { }
+     
+  constructor() {}
 
   ngOnInit(): void {
     this.initMap();
@@ -29,5 +30,4 @@ export class MapComponent implements OnInit {
 
     tiles.addTo(this.map);
   }
-
 }
