@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { StatistiqueComponent } from './content/statistique/statistique.component';
 import { MoreInfoComponent } from './content/more-info/more-info.component';
 import { ChartComponent } from './content/chart/chart.component';
+import { MapComponent } from './content/map/map.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { ChartComponent } from './content/chart/chart.component';
         FooterComponent,
         StatistiqueComponent,
         MoreInfoComponent,
-        ChartComponent
+        ChartComponent,
+        MapComponent
     ],
     imports: [
         BrowserModule,
