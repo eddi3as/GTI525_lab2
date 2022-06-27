@@ -6,38 +6,37 @@ import { StatsService } from 'src/app/services/stats.service';
 import { StatsSearch } from 'src/app/models/statssearch';
 
 @Component({
-  selector: 'app-statistique',
-  templateUrl: './statistique.component.html',
-  styleUrls: ['./statistique.component.css']
+    selector: 'app-statistique',
+    templateUrl: './statistique.component.html',
+    styleUrls: ['./statistique.component.css']
 })
 export class StatistiqueComponent implements OnInit {
-  @Input() cmpt: Compteur | undefined; 
-  dateFrom!: string;
-  dateTo!: string;
-  stats: any[] = [];//TODO delete after tests
+    @Input() cmpt: Compteur | undefined; 
+    dateFrom: string = "2019-01-01";
+    dateTo: string = "2019-01-31";
 
-  constructor(private router: Router,
-              private service: StatsService,
-              private ngxService: NgxSpinnerService) { }
+    constructor(private router: Router,
+                private service: StatsService,
+                private ngxService: NgxSpinnerService) { }
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 
-  setInfo(): void {
-    this.ngxService.show();
-    let info : StatsSearch = {
-      borne_id: this.cmpt?.id,
-      debut: this.dateFrom,
-      fin: this.dateTo
-    };
+    setInfo(): void {
+        this.ngxService.show();
+        let info : StatsSearch = {
+            borne_id: this.cmpt?.id,
+            debut: this.dateFrom,
+            fin: this.dateTo
+        };
 
-    this.service.getStats(info).subscribe((data: any) =>{
-      this.stats = JSON.parse(data.result);//TODO delete after tests
-      console.log("this.stats[0] first element");//TODO delete after tests
-      console.log(this.stats[0]);//TODO delete after tests
-      this.ngxService.hide();
-      this.router.navigate(['/chart'], {
-        state: { result: data.result } 
-      });
-    });
-  }
+        this.service.getStats(info).subscribe((data: any) => {
+            this.ngxService.hide();
+            this.router.navigate(['/chart'], {
+                state: { 
+                    result: data.result,
+                    filter: "m"
+                } 
+            });
+        });
+    }
 }

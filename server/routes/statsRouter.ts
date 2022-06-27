@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import moment from 'moment';
 import { StatsCtrl } from '../controller/statsCtrl'
 import { Utils } from '../utils/utils'
 
@@ -36,34 +37,31 @@ export class StatsRouter {
   }
 
   public async getStats(req: Request, res: Response, next: NextFunction) {
-    const id = req.params.id;
-    const debut = req.query.debut;
-    const fin = req.query.fin;
+    const id = req.params.id
+    const debut = req.query.debut
+    const fin = req.query.fin
     let filter = {
-      borne_id: id
-    };
-
-    if(debut){
-      //TODO ERROR ON SEARCH BY DATE
-      //filter["$gte"] = new Date(Utils.toISODate(debut));//debut 2020-01-01 00:00:00
+        borne_id: id,
+        Date: {}
     }
 
-    if(fin){
-      //TODO ERROR ON SEARCH BY DATE
-      //filter["$lte"] = new Date(Utils.toISODate(fin));//fin 2020-02-05 00:00:00
-    }
+    if(debut) 
+        filter.Date["$gte"] = new Date(moment(debut.toString(), "YYYY-MM-DD").toISOString())
 
-    let results = await this._statsCtrl.getStats(filter);
+    if(fin)
+        filter.Date["$lte"] = new Date(moment(fin.toString(), "YYYY-MM-DD").toISOString())
+
+    let results = await this._statsCtrl.getStats(filter)
     res.status(200)
     .send({
-      message: 'Success from getStats',
-      status: res.status,
-      result: results
+        message: 'Success from getStats',
+        status: res.status,
+        result: JSON.parse(results)
     });
   }
 
   init() {
-    this._router.get('/all-stats', this.allStats.bind(this));
+    this._router.get('/stats', this.allStats.bind(this));
     this._router.get('/stats/:id', this.getStats.bind(this));
   }
 
