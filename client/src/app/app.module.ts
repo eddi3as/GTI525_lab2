@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { StatistiqueComponent } from './content/statistique/statistique.component';
 import { MoreInfoComponent } from './content/more-info/more-info.component';
 import { ChartComponent } from './content/chart/chart.component';
+import { MapComponent } from './content/map/map.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import { ChartComponent } from './content/chart/chart.component';
         FooterComponent,
         StatistiqueComponent,
         MoreInfoComponent,
-        ChartComponent
+        ChartComponent,
+        MapComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +41,8 @@ import { ChartComponent } from './content/chart/chart.component';
         FormsModule,
         NgChartsModule,
         BrowserAnimationsModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent],
