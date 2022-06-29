@@ -107,15 +107,32 @@ export class ChartComponent implements OnInit {
 
     private createChart() {
         if(this.chart) this.chart.destroy()
-        console.log("Borne ", this.borne_id)
-        console.log(this.stats)
-        let usage: number[] = []
-        let dates: string[] = []
+        let usage: number[] = [0]
+        let dates: string[] = ["0"]
+
         if(this.filter === "Jour") {
             this.stats.forEach(i => {
                 dates.push(moment(i.Date).toDate().getDate().toString())
                 usage.push(i.count)
             })
+        }
+        if(this.filter === "Semaine") {
+            let usage_index = 0
+            let previous_day = 0
+            this.stats.forEach(i => {
+                let current_day: number = moment(i.Date).toDate().getDay()
+                console.log(moment(i.Date).toDate())
+                if(current_day < previous_day) {
+                    console.log('next', current_day, previous_day)
+                    usage_index++
+                    dates.push(usage_index.toString())
+                    usage[usage_index] = 0
+                }
+                if(i.count) usage[usage_index] = usage[usage_index] + Number(i.count)
+                previous_day = current_day
+            })
+            console.log("date ", dates)
+            console.log("usage ", usage)
         }
         if(this.filter === "Mois") {
             this.stats.forEach(i => {
@@ -135,9 +152,7 @@ export class ChartComponent implements OnInit {
                 })
             })
         }
-        console.log("dates", dates)
-        console.log("filter", this.filter)
-        console.log("usage", usage)
+        
         const data = {
             labels: dates,
             datasets: [{
