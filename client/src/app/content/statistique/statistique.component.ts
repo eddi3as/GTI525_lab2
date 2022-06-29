@@ -13,7 +13,7 @@ import { StatsSearch } from 'src/app/models/statssearch';
 export class StatistiqueComponent implements OnInit {
     @Input() cmpt: Compteur | undefined; 
     dateFrom: string = "2019-01-01";
-    dateTo: string = "2019-01-31";
+    dateTo: string = "2019-02-28";
 
     constructor(private router: Router,
                 private service: StatsService,
@@ -33,8 +33,13 @@ export class StatistiqueComponent implements OnInit {
             this.ngxService.hide();
             this.router.navigate(['/chart'], {
                 state: { 
+                    parameters: {
+                        borne_id: this.cmpt?.id,
+                        dateFrom: this.dateFrom,
+                        dateTo: this.dateTo
+                    },
                     result: data.result,
-                    filter: "m"
+                    filter: "Jour"
                 } 
             });
         });

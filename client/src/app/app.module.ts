@@ -19,6 +19,7 @@ import { StatistiqueComponent } from './content/statistique/statistique.componen
 import { MoreInfoComponent } from './content/more-info/more-info.component';
 import { ChartComponent } from './content/chart/chart.component';
 import { MapComponent } from './content/map/map.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { MapComponent } from './content/map/map.component';
         NgChartsModule,
         BrowserAnimationsModule,
         NgxSpinnerModule,
-        NgbModule
+        NgbModule,
+        MatRadioModule
     ],
     providers: [],
     bootstrap: [AppComponent],

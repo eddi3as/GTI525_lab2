@@ -1,9 +1,10 @@
 .chart-container {
     background-color: white;
 }
-button{
-	float: right;
+
+.btn-retour {
+    width: 8em;
 }
-.h2{
-	float: left;
+.middle {
+    text-align: center;
 }

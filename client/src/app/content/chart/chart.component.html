@@ -1,19 +1,36 @@
-<div class="chart-container" style="width: 800px; height: 80%;">
+<div class="chart-container">
 	
-<div class="container mt-3">
-	<h2 style="float: left; margin-top: 50px">Remembrance</h2>
-<div style="float: left; margin-left: 150px;"> 
-	<h4 style="text-align: center;">Période:</h4>
-	<p style="text-align: left;"><b>Debut</b>: <span style="text-align: right;">{{dateFrom}}</span></p>
-	<p><b style="text-align: left; margin-left: 23px;">Fin</b>: <span style="text-align: right;">{{dateTo}}</span></p>
-</div>
+    <div class="row">
+        <div class="col-4">
+            <div class="row">
+                <button class="btn btn-secondary btn-sm btn-retour" (click)="retour()">Retour arrière</button>
+            </div>
+
+            <div class="row">
+                <h2>Remembrance</h2>
+            </div>
+        </div>
+
+        <div class="col-6 middle"> 
+            <h4><b>Période:</b></h4>
+            <b>Debut</b>:{{dateFrom}}
+            <br/>
+            <b>Fin</b>:{{dateTo}}
+        </div>
 	
-	<div class="btn-group-vertical" style="float: right;">
-	  <button type="button" class="btn btn-ltg"><b>Jour</b></button>
-	  <button type="button" class="btn btn-ltg"><b>Semaine</b></button>
-	  <button type="button" class="btn btn-ltg"><b>Mois</b></button>
-	</div>
-  </div>
-    <canvas id="my-chart">
-    </canvas>
+        <div class="col-2"> 
+            <mat-radio-group [(ngModel)]="filter" (change)="update()">
+                <mat-radio-button  *ngFor="let filterType of filterTypes" [value]="filterType">
+                    {{filterType}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+        <canvas id="my-chart">
+        </canvas>
+        </div>
+    </div>
 </div>

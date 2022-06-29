@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Chart, ChartConfiguration, ChartItem } from 'chart.js';
 import { StatsService } from 'src/app/services/stats.service';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { StatsSearch } from 'src/app/models/statssearch';
 
 @Component({
   selector: 'app-chart',
@@ -10,98 +12,159 @@ import * as moment from 'moment';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  stats: any[] = [];
-  filter!: string; // j, s, ou m
-  routeState: any;
-  dateFrom: string | undefined;
-  dateTo: string | undefined;
+    stats: any[] = [];
+    filter: string = "Jour"
+    filterTypes: string[] = ["Jour", "Semaine", "Mois"]
+    routeState: any;
+    dateFrom: string = ""
+    dateTo: string = ""
+    borne_id: number = -1
+    chart: Chart | undefined
 
-  constructor(private service: StatsService, private router: Router) {
-    if (this.router.getCurrentNavigation()?.extras.state) {
-      this.getStats();
-      this.getFilter();
-    }
-  }
-
-  private getStats() {
-    this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    if (this.routeState) {
-      this.stats = this.routeState.result ? this.routeState.result : [];
-    }
-  }
-
-  private getFilter() {
-    this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    if (this.routeState) {
-      this.filter = this.routeState.filter ? this.routeState.filter : "j";
-    }
-  }
-
-  ngOnInit() {
-    this.dateFrom = "01-jan-2019";
-    this.dateTo = "01-jan-2020";
-  //  console.log("this.stats[0] first element");//TODO delete after tests
-  //  console.log(this.stats[0]);//TODO delete after tests
-    this.createChart();
-  }
-
-  private createChart() {
-    let usage: number[] = []
-    let dates: string[] = []
-    if(this.filter === "j") {
-        this.stats.forEach(i => {
-            dates.push(moment(i.Date).toDate().getDate().toString())
-            usage.push(i.count)
-        })
-    }
-    if(this.filter === "m") {
-        this.stats.forEach(i => {
-            let current_month: number = moment(i.Date).toDate().getMonth()
-            dates[current_month] = moment(i.Date).format("MM").toString()
-
-            if(usage.length < dates.length) {
-                for(let j = 0; j < dates.length; j++) {
-                    usage.push(0)
-                }
-            }
-
-            this.stats.forEach(j => {
-                if(j.count) {
-                    usage[current_month] = usage[current_month] + Number(j.count)
-                }
-            })
-        })
-    }
-    console.log("dates", dates)
-    console.log("filter", this.filter)
-    console.log("usage", usage)
-    const data = {
-      labels: dates,
-      datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: usage
-      }]
-    };
-    const options = {
-      scales: {
-        y: {
-          beginAtZero: true,
-          display: true,
-          text: "Passages"
+    constructor(
+        private service: StatsService, 
+        private router: Router,
+        private ngxService: NgxSpinnerService) {
+        if (this.router.getCurrentNavigation()?.extras.state) {
+            this.getStats();
+            this.getFilter();
+            this.getBorneId()
+            this.getDateTo()
+            this.getDateFrom()
         }
-      },
-      responsive: true,
-      maintainAspectRatio: false
-    };
-    const config: ChartConfiguration = {
-      type: 'bar',
-      data: data,
-      options: options
-    };
-    const chartItem: ChartItem = document.getElementById('my-chart') as ChartItem;
-    new Chart(chartItem, config);
-  }
+    }
+
+    update(): void {
+        this.ngxService.show();
+        let info : StatsSearch = {
+            borne_id: this.borne_id,
+            debut: this.dateFrom,
+            fin: this.dateTo
+        };
+
+        this.service.getStats(info).subscribe((data: any) => {
+            console.log(data)
+            this.ngxService.hide();
+            this.router.navigate(['/chart'], {
+                state: { 
+                    result: data.result,
+                    filter: this.filter
+                } 
+            });
+        });
+        this.createChart();
+    }
+
+    retour() {
+        this.router.navigate(['/'])
+    }
+
+    private getStats() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.stats = this.routeState.result ? this.routeState.result : [];
+        }
+    }
+
+    private getFilter() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.filter = this.routeState.filter ? this.routeState.filter : "Jour";
+        }
+    }
+
+    private getBorneId() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.borne_id = this.routeState.parameters.borne_id ? this.routeState.parameters.borne_id : "";
+        }
+        console.log("Borne ", this.borne_id)
+    }
+
+    private getDateFrom() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.dateFrom = this.routeState.parameters.dateFrom ? this.routeState.parameters.dateFrom : undefined;
+        }
+    } 
+    
+    private getDateTo() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.dateTo = this.routeState.parameters.dateTo ? this.routeState.parameters.dateTo : undefined;
+        }
+    } 
+
+    ngOnInit() {
+    //  console.log("this.stats[0] first element");//TODO delete after tests
+    //  console.log(this.stats[0]);//TODO delete after tests
+        this.createChart();
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.update()
+        }
+    }
+
+    private createChart() {
+        if(this.chart) this.chart.destroy()
+        console.log("Borne ", this.borne_id)
+        console.log(this.stats)
+        let usage: number[] = []
+        let dates: string[] = []
+        if(this.filter === "Jour") {
+            this.stats.forEach(i => {
+                dates.push(moment(i.Date).toDate().getDate().toString())
+                usage.push(i.count)
+            })
+        }
+        if(this.filter === "Mois") {
+            this.stats.forEach(i => {
+                let current_month: number = moment(i.Date).toDate().getMonth()
+                dates[current_month] = moment(i.Date).format("MM").toString()
+
+                if(usage.length < dates.length) {
+                    for(let j = 0; j < dates.length; j++) {
+                        usage.push(0)
+                    }
+                }
+
+                this.stats.forEach(j => {
+                    if(j.count) {
+                        usage[current_month] = usage[current_month] + Number(j.count)
+                    }
+                })
+            })
+        }
+        console.log("dates", dates)
+        console.log("filter", this.filter)
+        console.log("usage", usage)
+        const data = {
+            labels: dates,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: usage
+            }]
+        };
+        const options = {
+            scales: {
+                y: {
+                beginAtZero: true,
+                display: true,
+                text: "Passages"
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        };
+        const config: ChartConfiguration = {
+            type: 'bar',
+            data: data,
+            options: options
+        };
+        const chartItem: ChartItem = document.getElementById('my-chart') as ChartItem;
+        this.chart = new Chart(chartItem, config);
+    }
 
 }
