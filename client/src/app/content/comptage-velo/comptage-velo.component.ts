@@ -20,7 +20,7 @@ export class ComptageVeloComponent implements OnInit {
     closeResult: string = '';
 
     constructor(private csvService: CSVService,
-                private service: CompteurService,
+                private compteurService: CompteurService,
                 private ngxService: NgxSpinnerService,
                 private modalService: NgbModal) { }
 
@@ -48,6 +48,9 @@ export class ComptageVeloComponent implements OnInit {
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
+
+      this.compteurService.setAllCompteurs(this.compteurs);
+      this.compteurService.setSelectedCompteur(compteur);
     } 
      
     /**

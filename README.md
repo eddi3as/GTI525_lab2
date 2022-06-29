@@ -28,13 +28,13 @@ Ajouter une modale (overlay) qui apparaîtra lorsque l’utilisateur cliquera su
 
 ## T1.2 Vincent
 Ajouter sur la carte des marqueurs correspondants à tous les compteurs disponibles. L’icône selectionné avoir une couleur différente de celles des autres.
-- [ ] Commencé
-- [ ] Fait
+- [x] Commencé
+- [x] Fait
 
 ## T1.3 Vincent
 Tous les marqueurs doivent contenir des indices contextuels (pop-up hints). L’icône selectionné doit avoir l'indice affiché par défaut lorsque la couche modale apparaît.
-- [ ] Commencé
-- [ ] Fait
+- [x] Commencé
+- [x] Fait
 
 ## T1.4 Esteban
 La carte doit être initialement centrée pour afficher l'ensemble des compteurs disponibles.
