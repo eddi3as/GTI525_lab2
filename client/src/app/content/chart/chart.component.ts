@@ -43,7 +43,6 @@ export class ChartComponent implements OnInit {
         };
 
         this.service.getStats(info).subscribe((data: any) => {
-            console.log(data)
             this.ngxService.hide();
             this.router.navigate(['/chart'], {
                 state: { 
@@ -78,7 +77,6 @@ export class ChartComponent implements OnInit {
         if (this.routeState) {
             this.borne_id = this.routeState.parameters.borne_id ? this.routeState.parameters.borne_id : "";
         }
-        console.log("Borne ", this.borne_id)
     }
 
     private getDateFrom() {
@@ -96,8 +94,6 @@ export class ChartComponent implements OnInit {
     } 
 
     ngOnInit() {
-    //  console.log("this.stats[0] first element");//TODO delete after tests
-    //  console.log(this.stats[0]);//TODO delete after tests
         this.createChart();
         this.routeState = this.router.getCurrentNavigation()?.extras.state;
         if (this.routeState) {
@@ -121,9 +117,7 @@ export class ChartComponent implements OnInit {
             let previous_day = 0
             this.stats.forEach(i => {
                 let current_day: number = moment(i.Date).toDate().getDay()
-                console.log(moment(i.Date).toDate())
                 if(current_day < previous_day) {
-                    console.log('next', current_day, previous_day)
                     usage_index++
                     dates.push(usage_index.toString())
                     usage[usage_index] = 0
@@ -131,8 +125,6 @@ export class ChartComponent implements OnInit {
                 if(i.count) usage[usage_index] = usage[usage_index] + Number(i.count)
                 previous_day = current_day
             })
-            console.log("date ", dates)
-            console.log("usage ", usage)
         }
         if(this.filter === "Mois") {
             this.stats.forEach(i => {
