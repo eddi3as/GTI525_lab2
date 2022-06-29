@@ -151,17 +151,11 @@ export class ChartComponent implements OnInit {
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
+                barPercentage: 1,
                 data: usage
             }]
         };
         const options = {
-            scales: {
-                y: {
-                beginAtZero: true,
-                display: true,
-                text: "Passages"
-                }
-            },
             responsive: true,
             maintainAspectRatio: false
         };

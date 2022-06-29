@@ -13,7 +13,7 @@ import { StatsSearch } from 'src/app/models/statssearch';
 export class StatistiqueComponent implements OnInit {
     @Input() cmpt: Compteur | undefined; 
     dateFrom: string = "2019-01-01";
-    dateTo: string = "2019-02-28";
+    dateTo: string = "2019-01-31";
 
     constructor(private router: Router,
                 private service: StatsService,

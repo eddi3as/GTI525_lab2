@@ -13,9 +13,9 @@
 
         <div class="col-6 middle"> 
             <h4><b>Période:</b></h4>
-            <b>Debut</b>:{{dateFrom}}
+            <b>Debut</b>:&emsp;{{dateFrom}}
             <br/>
-            <b>Fin</b>:{{dateTo}}
+            <b>Fin</b>:&emsp;{{dateTo}}
         </div>
 	
         <div class="col-2"> 
@@ -26,11 +26,19 @@
             </mat-radio-group>
         </div>
     </div>
-
+    <hr>
     <div class="row">
-        <div class="col">
-        <canvas id="my-chart">
-        </canvas>
+        <div class="col-1">
+            <h4 class="y_label">
+                Passages
+            </h4>
         </div>
+        <div class="col-11">
+            <canvas id="my-chart">
+            </canvas>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="x_label">Date</h4>
     </div>
 </div>

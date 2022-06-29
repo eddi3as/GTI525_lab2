@@ -8,3 +8,21 @@
 .middle {
     text-align: center;
 }
+#my-chart {
+    padding-top: 1em;
+    min-height: 25em;
+}
+hr {
+    height: 0.25em;
+}
+.x_label {
+    position: relative;
+    left: 54%;
+}
+.y_label {
+    position: relative;
+    top: 40%;
+    vertical-align: middle;
+    writing-mode: sideways-lr;
+    text-orientation: mixed;
+}
