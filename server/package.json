@@ -1,18 +1,14 @@
 {
   "name": "lab2",
   "version": "1.0.0",
-  "description": "mean app for bikes ETS",
+  "description": "mean app for bikes ETS", 
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stop": "taskkill /f /im node.exe",
-    "build-dev": "tsc -b --verbose && npm run build-dev",
-    "copyviews": "copyfiles --all ./* ./dist",
-    "copyassets": "copyfiles --all ./views/assets/* ./dist",
-    "start": "SET NODE_ENV=production && node dist/index.js",
-    "start-dev": "SET NODE_ENV=dev && npm run clean && npm run build && node dist/index.js"
+    "build": "tsc -b --verbose && npm run build-dev",
+    "build-dev": "tsc -b --verbose && npm run copyviews",
+    "copyviews": "copyfiles --all ./views/* ./dist"
   },
   "author": "Equipe 8 GTI525",
   "license": "ISC",
