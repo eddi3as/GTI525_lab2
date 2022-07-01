@@ -23,8 +23,8 @@
 
 ## T1.1 Esteban
 Ajouter une modale (overlay) qui apparaîtra lorsque l’utilisateur cliquera sur un des icônes de la vue comptage de vélos.
-- [ ] Commencé
-- [ ] Fait
+- [x] Commencé
+- [x] Fait
 
 ## T1.2 Vincent
 Ajouter sur la carte des marqueurs correspondants à tous les compteurs disponibles. L’icône selectionné avoir une couleur différente de celles des autres.
@@ -38,8 +38,8 @@ Tous les marqueurs doivent contenir des indices contextuels (pop-up hints). L’
 
 ## T1.4 Esteban
 La carte doit être initialement centrée pour afficher l'ensemble des compteurs disponibles.
-- [ ] Commencé
-- [ ] Fait
+- [x] Commencé
+- [x] Fait
 
 # T2: Application dorsale (back-end)
 ## T2.1 Edwin
