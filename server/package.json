@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "stop": "taskkill /f /im node.exe",
-    "build": "tsc -b --verbose && npm run build-dev",
+    "build": "npm run build-dev && npm run copyassets",
     "build-dev": "tsc -b --verbose && npm run copyviews",
-    "copyviews": "copyfiles --all ./views/* ./dist"
+    "copyviews": "copyfiles --all ./views/* ./dist",
+    "copyassets": "copyfiles --all ./views/assets/* ./dist",
+    "start-dev": "SET NODE_ENV=dev && node dist/index.js",
+    "start": "SET NODE_ENV=production && node dist/index.js"
   },
   "author": "Equipe 8 GTI525",
   "license": "ISC",
