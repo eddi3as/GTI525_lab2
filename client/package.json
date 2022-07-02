@@ -27,7 +27,7 @@
     "jquery": "^3.6.0",
     "leaflet": "^1.8.0",
     "moment": "^2.29.3",
-    "ng2-charts": "^3.0.11",
+    "ng2-charts": "3.0.11",
     "ngx-spinner": "^13.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
