@@ -30,7 +30,8 @@ export class MapComponent implements OnInit {
     this.initMap();
   }
 
-  private initMap(): void {
+  private initMap(): void {    
+    this.centroid = [Number(this.selectedCompteur.latitude), Number(this.selectedCompteur.longitude)];
     this.map = leaf.map('map', {
       center: this.centroid,
       zoom: 12
@@ -44,19 +45,23 @@ export class MapComponent implements OnInit {
 
     tiles.addTo(this.map);
 
+    const normal_marker = leaf.icon({
+      iconUrl: "../../../assets/marker-icon.png"
+    });
+
+    let otherCompteurs = this.allCompteurs.map((x) => x);
+    otherCompteurs.splice(otherCompteurs.findIndex((counter) => counter == this.selectedCompteur), 1);
+    otherCompteurs.forEach((compteur) => {
+      const otherCounterMarker =  leaf.marker([Number(compteur.latitude), Number(compteur.longitude)], {icon: normal_marker}).addTo(this.map);
+      otherCounterMarker.bindPopup(`<b>${compteur.name}</b>`);
+    });
+
     const selectedCompteurMarker = leaf.marker([Number(this.selectedCompteur.latitude), Number(this.selectedCompteur.longitude)], {
       icon: leaf.icon({
         iconUrl: "../../../assets/marker-icon-red.png"
       })
     }).addTo(this.map);
     selectedCompteurMarker.bindPopup(`<b>${this.selectedCompteur.name}</b>`).openPopup();
-
-    let otherCompteurs = this.allCompteurs.map((x) => x);
-    otherCompteurs.splice(otherCompteurs.findIndex((counter) => counter == this.selectedCompteur), 1);
-    otherCompteurs.forEach((compteur) => {
-      const otherCounterMarker =  leaf.marker([Number(compteur.latitude), Number(compteur.longitude)]).addTo(this.map);
-      otherCounterMarker.bindPopup(`<b>${compteur.name}</b>`);
-    });
   }
 
   ngOnDestroy() {

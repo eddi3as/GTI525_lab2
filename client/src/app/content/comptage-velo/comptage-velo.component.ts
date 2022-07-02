@@ -27,13 +27,6 @@ export class ComptageVeloComponent implements OnInit {
     async ngOnInit() {
       this.ngxService.show();
       this.compteurs = await this.csvService.getCompteurs();
-        //API CALL for IT-3
-        /*
-        this.service.getCompteurs().subscribe((data: any) =>{
-          this.cmpt_arr = JSON.parse(data.result);
-          console.log(this.cmpt_arr[0]);
-        });
-        */
       this.ngxService.hide();
     }     
 
@@ -43,9 +36,9 @@ export class ComptageVeloComponent implements OnInit {
      * @return response()
      */
     open(content:any, compteur: any) {
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg', windowClass: 'modal-xl'}).result.then((result) => {
+      this.modalService.open(content, {size: 'xl', centered: true}).result.then((result: any) => {
         this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
+      }, (reason: any) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
 
