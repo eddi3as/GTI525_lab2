@@ -19,6 +19,7 @@ export class ChartComponent implements OnInit {
     dateFrom: string = ""
     dateTo: string = ""
     borne_id: number = -1
+    borne_name: string = ""
     chart: Chart | undefined
 
     constructor(
@@ -29,6 +30,7 @@ export class ChartComponent implements OnInit {
             this.getStats();
             this.getFilter();
             this.getBorneId()
+            this.getBorneName()
             this.getDateTo()
             this.getDateFrom()
         }
@@ -38,6 +40,7 @@ export class ChartComponent implements OnInit {
         this.ngxService.show();
         let info : StatsSearch = {
             borne_id: this.borne_id,
+            borne_name: this.borne_name,
             debut: this.dateFrom,
             fin: this.dateTo
         };
@@ -76,6 +79,13 @@ export class ChartComponent implements OnInit {
         this.routeState = this.router.getCurrentNavigation()?.extras.state;
         if (this.routeState) {
             this.borne_id = this.routeState.parameters.borne_id ? this.routeState.parameters.borne_id : "";
+        }
+    }
+
+    private getBorneName() {
+        this.routeState = this.router.getCurrentNavigation()?.extras.state;
+        if (this.routeState) {
+            this.borne_name = this.routeState.parameters.borne_name ? this.routeState.parameters.borne_name : "";
         }
     }
 
