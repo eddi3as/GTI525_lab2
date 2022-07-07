@@ -9,9 +9,13 @@
     "build": "npm run build-dev && npm run copyassets",
     "build-dev": "tsc -b --verbose && npm run copyviews",
     "copyviews": "copyfiles --all ./views/* ./dist",
+<<<<<<< Updated upstream
     "copyassets": "copyfiles --all ./views/assets/* ./dist",
     "start-dev": "SET NODE_ENV=dev && node dist/index.js",
     "start": "SET NODE_ENV=production && node dist/index.js"
+=======
+    "start-dev": "export NODE_ENV=dev && npm run clean && npm run build && node dist/index.js"
+>>>>>>> Stashed changes
   },
   "author": "Equipe 8 GTI525",
   "license": "ISC",

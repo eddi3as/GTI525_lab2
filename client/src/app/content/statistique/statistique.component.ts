@@ -25,9 +25,11 @@ export class StatistiqueComponent implements OnInit {
         this.ngxService.show();
         let info : StatsSearch = {
             borne_id: this.cmpt?.id,
+            borne_name: this.cmpt?.name,
             debut: this.dateFrom,
             fin: this.dateTo
         };
+        console.log(this.cmpt)
 
         this.service.getStats(info).subscribe((data: any) => {
             this.ngxService.hide();
@@ -35,6 +37,7 @@ export class StatistiqueComponent implements OnInit {
                 state: { 
                     parameters: {
                         borne_id: this.cmpt?.id,
+                        borne_name: this.cmpt?.name,
                         dateFrom: this.dateFrom,
                         dateTo: this.dateTo
                     },
