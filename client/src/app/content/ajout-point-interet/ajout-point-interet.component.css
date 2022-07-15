@@ -17,3 +17,7 @@ hr {
 .label {
     text-align: right;
 }
+
+.btn {
+    margin-right:1em;
+}

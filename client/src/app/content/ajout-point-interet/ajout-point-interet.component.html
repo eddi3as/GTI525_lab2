@@ -2,30 +2,80 @@
 
     <div class="row">
         <div class="col">
-            <h2>Points d'intérets</h2>
+            <h2>Ajout d'un points d'intéret</h2>
         </div>
     </div>
 
     <hr>
 
     <div class="row">
-        <label for="nom" class="col-sm-2 col-form-label label">Nom du lieu:</label>
-        <div class="col-sm-10">
+        <label for="nom" class="col-sm-3 col-form-label label">Nom du lieu:</label>
+        <div class="col-sm-9">
             <input type="text" class="form-control" id="nom">
         </div>
     </div>
 
     <div class="row">
-        <label for="adresse" class="col-sm-2 col-form-label label">Adresse:</label>
-        <div class="col-sm-10">
+        <label for="adresse" class="col-sm-3 col-form-label label">Adresse:</label>
+        <div class="col-sm-9">
             <input type="text" class="form-control" id="adresse">
         </div>
     </div>
 
     <div class="row">
-        <label for="arrondissement" class="col-sm-2 col-form-label label">Arrondissement:</label>
-        <div class="col-sm-10">
+        <label for="arrondissement" class="col-sm-3 col-form-label label">Arrondissement:</label>
+        <div class="col-sm-9">
             <input type="text" class="form-control" id="arrondissement">
         </div>
     </div>
+
+    <div class="row">
+        <label for="type" class="col-sm-3 col-form-label label">Type:</label>
+        <div class="col-sm-9">
+            <select  class="form-select" class="form-control" id="type">
+                <option value="1" selected>Fontaine à boire</option>
+                <option value="2">L'autre</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="annee" class="col-sm-3 col-form-label label">Année d'établissement:</label>
+        <div class="col-sm-9">
+            <select  class="form-select" class="form-control" id="annee">
+                <option value="1" selected>2022</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-4 col-form-label">Coordonées géographiques:</label>
+
+        <label for="longitude" class="col-sm-2 col-form-label label">ou Longitude:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="longitude">
+        </div>
+
+        <label for="latitude" class="col-sm-2 col-form-label label">Latitude:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="latitude">
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="remarques" class="col-sm-3 col-form-label label">Remarques:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="remarques">
+        </div>
+    </div>
+
+    <hr>
+
+
+    <button type="button" class="btn btn-secondary">
+        Annuler
+    </button>
+    <button type="button" class="btn btn-secondary">
+        Envoyer
+    </button>
 </div>
