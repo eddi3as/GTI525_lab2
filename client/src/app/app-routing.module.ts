@@ -4,6 +4,7 @@ import { ChartComponent } from './content/chart/chart.component';
 import { MapComponent } from './content/map/map.component';
 import { ComptageVeloComponent } from './content/comptage-velo/comptage-velo.component';
 import { PointInteretComponent } from './content/point-interet/point-interet.component';
+import { AjoutPointInteretComponent } from './content/ajout-point-interet/ajout-point-interet.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/comptage-velo', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'map', component: MapComponent },
     { path: 'points-interets', component: PointInteretComponent },
     { path: 'chart', component: ChartComponent },
+    { path: 'ajout-point-interet', component: AjoutPointInteretComponent },
 ];
 
 @NgModule({
