@@ -16,4 +16,8 @@ export class FontaineCtrl {
         this.fontaines = (await collections.fontaines.find<Fontaine>(filter).toArray()) as Fontaine[];
         return JSON.stringify(this.fontaines);
     }
+
+    public async insertFontaine(fontaine: Fontaine) {
+        await collections.fontaines.insertOne(fontaine)
+    }
 }

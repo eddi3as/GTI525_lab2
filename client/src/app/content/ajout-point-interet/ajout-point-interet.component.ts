@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-ajout-point-interet',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./ajout-point-interet.component.css']
 })
 export class AjoutPointInteretComponent implements OnInit {
+    routeState: any;
     public types: string[] = ["Fontaines à boire", "Atelier de vélo"]
     public selectedType: string = ""
     public annees: number[] = []
@@ -17,12 +19,21 @@ export class AjoutPointInteretComponent implements OnInit {
     public latitude: number = 0
     public remarque: string = ""
 
-    constructor() { }
+    constructor(
+        private router: Router) { }
 
     ngOnInit(): void {
         
         for(let i = 0; i <= 100; i++) 
             this.annees.push(this.selectedAnnee - i)
+    }
+
+    public ajoutPointInteret(): void {
+
+    }
+
+    public annuler(): void {
+        this.router.navigate(['/'])
     }
 
 }

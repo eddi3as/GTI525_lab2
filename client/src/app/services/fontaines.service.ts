@@ -10,7 +10,11 @@ export class FontaineService {
 
   constructor(private http: HttpClient) { }
 
-  getFontaines(){
+  getFontaines() {
     return this.http.get(this.url);
+  }
+
+  insertFontaines() {
+    return this.http.post(this.url, )
   }
 }
