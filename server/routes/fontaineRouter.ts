@@ -37,7 +37,7 @@ export class FontaineRouter {
 
   public async getFontaine(req: Request, res: Response, next: NextFunction) {
     const id = req.params.id
-    let filter = { _id: new ObjectId(id) }
+    let filter = { ID: id }
     let results = await this._fntCtrl.getFontaine(filter)
     res.status(200)
     .send({
@@ -49,10 +49,16 @@ export class FontaineRouter {
 
   public async ajoutFontaine(req: Request, res: Response, next: NextFunction) {
     let fontaine = new Fontaine(
+        req.body.id,
         req.body.arrondissement,
-        req.body.nom_lieu,
+        req.body.nom_parc_lieu,
+        "",
+        "",
         req.body.date_installation,
         req.body.remarques,
+        "",
+        "",
+        "",
         req.body.latitude,
         req.body.longitude
     )

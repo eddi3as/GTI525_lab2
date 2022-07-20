@@ -34,7 +34,7 @@ export class AtelierRouter {
 
     public async getAtelier(req: Request, res: Response, next: NextFunction) {
         const id = req.params.id;
-        let filter = { _id: new ObjectId(id) }
+        let filter = { ID: id }
         let results = await this._atelierCtrl.getAtelier(filter);
         res.status(200)
         .send({
