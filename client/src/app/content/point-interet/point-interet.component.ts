@@ -28,7 +28,7 @@ export class PointInteretComponent implements OnInit {
         data.result.forEach((fontaine: any) => {
             console.log(fontaine)
             this.pointsInteret.push({
-                id: fontaine.id,
+                id: fontaine.ID,
                 neighbourhood: fontaine.arrondissement,
                 parc_name: fontaine.nom_lieu,
                 install_date: fontaine.date_installation,
@@ -44,7 +44,7 @@ export class PointInteretComponent implements OnInit {
     this.serviceAteliers.getAteliers().subscribe((data: any) => {
         data.result.forEach((atelier: any) => {
             console.log({
-                id: atelier.id,
+                id: atelier.ID,
                 neighbourhood: atelier.arrondissement,
                 parc_name: atelier.nom_lieu,
                 install_date: atelier.date_installation,
@@ -75,6 +75,7 @@ export class PointInteretComponent implements OnInit {
   }
 
   getSelected() {
+    console.log(this.selectedFontaine)
     return this.selectedFontaine;
   }
 
