@@ -16,8 +16,6 @@ export class AtelierService {
     }
 
     insertAteliers(atelier: Atelier) {
-        console.log("post", this.url, atelier)
-        console.log("res", this.http.post(this.url, atelier))
         let new_id = -1
         this.http.post<Atelier>(this.url, {
             arrondissement: atelier.neighbourhood,
@@ -28,9 +26,7 @@ export class AtelierService {
             id: atelier.id
         }).subscribe(data => {
             new_id = data.id
-            console.log("data", data)
         })
-        console.log(new_id)
         return new_id
     }
 }

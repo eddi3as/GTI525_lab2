@@ -33,11 +33,9 @@ export class AjoutPointInteretComponent implements OnInit {
     }
 
     public ajoutPointInteret(): void {
-        console.log("Click")
         let id = Math.floor(Math.random() * 100001);
         // Si c'est une fontaine
         if(this.selectedType === this.types[0]) {
-            console.log("F")
             this.fontaineService.insertFontaines({
                 id: id,
                 neighbourhood: this.arrondissement,
@@ -47,8 +45,8 @@ export class AjoutPointInteretComponent implements OnInit {
                 latitude: this.latitude,
                 longitude: this.longitude
             })
+            this.router.navigate(['/'])
         } else {
-            console.log("A")
             this.atelierService.insertAteliers({
                 id: id,
                 neighbourhood: this.arrondissement,

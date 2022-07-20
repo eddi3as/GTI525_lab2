@@ -16,6 +16,18 @@ export class FontaineService {
   }
 
   insertFontaines(fontaine: Fontaine) {
-    return this.http.post(this.url, fontaine)
+    let new_id = -1
+    this.http.post<Fontaine>(this.url, {
+        arrondissement: fontaine.neighbourhood,
+        nom_lieu: fontaine.parc_name,
+        date_installation: fontaine.install_date,
+        remarques: fontaine.comment,
+        latitude: fontaine.latitude,
+        longitude: fontaine.longitude,
+        id: fontaine.id
+    }).subscribe(data => {
+        new_id = data.id
+    })
+    return new_id
   }
 }

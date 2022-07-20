@@ -22,12 +22,22 @@ export class PointInteretComponent implements OnInit {
     this.ngxService.show();
     this.fontaines = await this.csvService.getFontaines();
     //API CALL for IT-3
-    /*
+    
     this.service.getFontaines().subscribe((data: any) => {
-      this.fnt_arr = JSON.parse(data.result);
-      console.log(this.fnt_arr[0]);
+        data.result.forEach((fontaine: any) => {
+            console.log(fontaine)
+            this.fontaines.push({
+                id: fontaine.id,
+                neighbourhood: fontaine.arrondissement,
+                parc_name: fontaine.nom_lieu,
+                install_date: fontaine.date_installation,
+                comment: fontaine.remarques,
+                latitude: fontaine.latitude,
+                longitude: fontaine.longitude
+            })
+        })
     });
-    */
+   
     this.ngxService.hide();
   }
 

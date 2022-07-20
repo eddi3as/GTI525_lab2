@@ -44,7 +44,6 @@ export class AtelierRouter {
     }
 
     public async ajoutAtelier(req: Request, res: Response, next: NextFunction) {
-        console.log("body", req.body)
         let atelier = new Atelier(
             req.body.id,
             req.body.arrondissement, 
@@ -53,7 +52,6 @@ export class AtelierRouter {
             req.body.remarques, 
             req.body.adresse
         )
-        console.log("atelier recu", atelier)
         await this._atelierCtrl.insertAtelier(atelier)
 
         res.status(200)

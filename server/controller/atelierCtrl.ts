@@ -4,8 +4,6 @@ import Atelier from '../models/atelier';
 export class AtelierCtrl {
 
     public async getAtelier(filter: any) {
-        console.log("filtre", filter)
-
         let ateliers = (await collections.ateliers.find<Atelier>(filter).toArray()) as Atelier[];
         return JSON.stringify(ateliers);
     }
