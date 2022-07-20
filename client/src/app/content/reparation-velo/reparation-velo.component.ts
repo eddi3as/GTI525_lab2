@@ -21,7 +21,6 @@ export class ReparationVeloComponent implements OnInit {
         
         this.service.getAteliers().subscribe((data: any) => {
             data.result.forEach((atelier: any) => {
-                console.log(atelier)
                 this.ateliers.push({
                     id: atelier.id,
                     neighbourhood: atelier.arrondissement,

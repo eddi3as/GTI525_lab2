@@ -23,7 +23,6 @@ export class FontainesABoireComponent implements OnInit {
         
         this.service.getFontaines().subscribe((data: any) => {
             data.result.forEach((fontaine: any) => {
-                console.log(fontaine)
                 this.fontaines.push({
                     id: fontaine.id,
                     neighbourhood: fontaine.arrondissement,
