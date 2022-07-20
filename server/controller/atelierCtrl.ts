@@ -3,22 +3,14 @@ import Atelier from '../models/atelier';
 
 export class AtelierCtrl {
 
-    private ateliers: Atelier[];
+    public async getAtelier(filter: any) {
+        console.log("filtre", filter)
 
-    constructor() {
-        this.ateliers = [];
-    }
-
-    public async getAtelier(filter: any){
-        if(this.ateliers.length > 0)
-            return JSON.stringify(this.ateliers);
-
-        this.ateliers = (await collections.ateliers.find<Atelier>(filter).toArray()) as Atelier[];
-        return JSON.stringify(this.ateliers);
+        let ateliers = (await collections.ateliers.find<Atelier>(filter).toArray()) as Atelier[];
+        return JSON.stringify(ateliers);
     }
 
     public async insertAtelier(fontaine: Atelier) {
-        let res = await collections.ateliers.insertOne(fontaine)
-        console.log(res)
+        await collections.ateliers.insertOne(fontaine)
     }
 }

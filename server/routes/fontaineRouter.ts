@@ -37,7 +37,7 @@ export class FontaineRouter {
 
   public async getFontaine(req: Request, res: Response, next: NextFunction) {
     const id = req.params.id
-    let filter = { ID: id }
+    let filter = { ID: Number.parseFloat(id) }
     let results = await this._fntCtrl.getFontaine(filter)
     res.status(200)
     .send({
