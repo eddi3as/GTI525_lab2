@@ -1,7 +1,7 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction } from 'express'
 import { FontaineCtrl } from '../controller/fontaineCtrl'
-import Fontaine from '../models/fontaine';
-import { v4 as uuidv4 } from 'uuid'
+import Fontaine from '../models/fontaine'
+import { ObjectId } from "mongodb"
 
 export class FontaineRouter {
   private _router: Router;
@@ -36,9 +36,9 @@ export class FontaineRouter {
   }
 
   public async getFontaine(req: Request, res: Response, next: NextFunction) {
-    const id = req.params.id;
-    let filter = { ID: id };
-    let results = await this._fntCtrl.getFontaine(filter);
+    const id = req.params.id
+    let filter = { _id: new ObjectId(id) }
+    let results = await this._fntCtrl.getFontaine(filter)
     res.status(200)
     .send({
       message: 'Success from getFontaine',
@@ -48,7 +48,6 @@ export class FontaineRouter {
   }
 
   public async ajoutFontaine(req: Request, res: Response, next: NextFunction) {
-    let id = uuidv4()
     let fontaine = new Fontaine(
         req.body.arrondissement,
         req.body.nom_lieu,
@@ -62,8 +61,7 @@ export class FontaineRouter {
     res.status(200)
     .send({
       message: 'Success from ajoutFontaine',
-      status: res.status,
-      fontaine_id: id
+      status: res.status
     });
   }
 

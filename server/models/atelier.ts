@@ -7,5 +7,5 @@ export default class Atelier {
         public date_installation: string,
         public remarques: string, 
         public adresse: string, 
-        public id?: ObjectId) {}
+        public _id?: ObjectId) {}
 }

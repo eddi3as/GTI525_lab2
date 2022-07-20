@@ -8,5 +8,5 @@ export default class Fontaine {
         public remarques: string, 
         public longitude: string, 
         public latitude: string, 
-        public id?: ObjectId) {}
+        public _id?: ObjectId) {}
 }

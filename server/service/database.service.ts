@@ -15,7 +15,7 @@ export async function connectToDatabase () {
     const statsCollection: mongoDB.Collection = db.collection(process.env.STATS_COLLECTION_NAME);
     const compteurCollection: mongoDB.Collection = db.collection(process.env.CNT_COLLECTION_NAME);
     const fontaineCollection: mongoDB.Collection = db.collection(process.env.FNT_COLLECTION_NAME);
-    const atelierCollection: mongoDB.Collection = db.collection(process.env.FNT_COLLECTION_NAME);
+    const atelierCollection: mongoDB.Collection = db.collection(process.env.ATELIER_COLLECTION_NAME);
 
     collections.stats = statsCollection;
     collections.compteurs = compteurCollection;
