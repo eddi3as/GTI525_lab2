@@ -1,4 +1,4 @@
-export interface Fontaine {
+export interface Atelier {
     id: number;
     neighbourhood?: string;
     parc_name: string;
@@ -10,6 +10,5 @@ export interface Fontaine {
     accuracy?: string;
     x?: number;
     y?: number;
-    longitude: number;
-    latitude: number;
+    address: string;
 }

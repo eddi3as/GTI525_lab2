@@ -18,6 +18,7 @@ export class AtelierCtrl {
     }
 
     public async insertAtelier(fontaine: Atelier) {
-        await collections.ateliers.insertOne(fontaine)
+        let res = await collections.ateliers.insertOne(fontaine)
+        console.log(res)
     }
 }

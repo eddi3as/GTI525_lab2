@@ -1,7 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { AtelierCtrl } from '../controller/AtelierCtrl'
 import Atelier from '../models/atelier'
-import { ObjectId } from "mongodb"
 
 export class AtelierRouter {
     private _router: Router;
@@ -45,13 +44,16 @@ export class AtelierRouter {
     }
 
     public async ajoutAtelier(req: Request, res: Response, next: NextFunction) {
+        console.log("body", req.body)
         let atelier = new Atelier(
+            req.body.id,
             req.body.arrondissement, 
             req.body.nom_lieu, 
             req.body.date_installation,
             req.body.remarques, 
             req.body.adresse
         )
+        console.log("atelier recu", atelier)
         await this._atelierCtrl.insertAtelier(atelier)
 
         res.status(200)
