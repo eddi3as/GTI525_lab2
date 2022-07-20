@@ -22,6 +22,7 @@ import { MapComponent } from './content/map/map.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { AjoutPointInteretComponent } from './content/ajout-point-interet/ajout-point-interet.component';
 import { FontainesABoireComponent } from './content/fontaines-a-boire/fontaines-a-boire.component';
+import { ReparationVeloComponent } from './content/reparation-velo/reparation-velo.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { FontainesABoireComponent } from './content/fontaines-a-boire/fontaines-
         ChartComponent,
         MapComponent,
         AjoutPointInteretComponent,
-        FontainesABoireComponent
+        FontainesABoireComponent,
+        ReparationVeloComponent
     ],
     imports: [
         BrowserModule,

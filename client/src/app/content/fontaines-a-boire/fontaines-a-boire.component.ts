@@ -8,7 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner'
   styleUrls: ['./fontaines-a-boire.component.css']
 })
 export class FontainesABoireComponent implements OnInit {
-
     fontaines: any[] = []
     fnt_arr: any
     showMoreInfo: boolean = false
@@ -19,37 +18,35 @@ export class FontainesABoireComponent implements OnInit {
                 private ngxService: NgxSpinnerService) { }
   
     async ngOnInit() {
-      this.ngxService.show()
-      this.fontaines = await this.csvService.getFontaines()
-      //API CALL for IT-3
-      
-      this.service.getFontaines().subscribe((data: any) => {
-          data.result.forEach((fontaine: any) => {
-              console.log(fontaine)
-              this.fontaines.push({
-                  id: fontaine.id,
-                  neighbourhood: fontaine.arrondissement,
-                  parc_name: fontaine.nom_lieu,
-                  install_date: fontaine.date_installation,
-                  comment: fontaine.remarques,
-                  latitude: fontaine.latitude,
-                  longitude: fontaine.longitude
-              })
-          })
-      });
-     
-      this.ngxService.hide()
+        this.ngxService.show()
+        this.fontaines = await this.csvService.getFontaines()
+        
+        this.service.getFontaines().subscribe((data: any) => {
+            data.result.forEach((fontaine: any) => {
+                console.log(fontaine)
+                this.fontaines.push({
+                    id: fontaine.id,
+                    neighbourhood: fontaine.arrondissement,
+                    parc_name: fontaine.nom_lieu,
+                    install_date: fontaine.date_installation,
+                    comment: fontaine.remarques,
+                    latitude: fontaine.latitude,
+                    longitude: fontaine.longitude
+                })
+            })
+        });
+        
+        this.ngxService.hide()
     }
-  
+
     statsSearch() {}
-  
+
     setSelected(fontaine: any) {
-      this.selectedFontaine = fontaine
-      this.showMoreInfo = true;
+        this.selectedFontaine = fontaine
+        this.showMoreInfo = true;
     }
-  
+
     getSelected() {
-      return this.selectedFontaine
+        return this.selectedFontaine
     }
-  
 }
