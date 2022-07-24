@@ -20,6 +20,9 @@ import { MoreInfoComponent } from './content/more-info/more-info.component';
 import { ChartComponent } from './content/chart/chart.component';
 import { MapComponent } from './content/map/map.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { AjoutPointInteretComponent } from './content/ajout-point-interet/ajout-point-interet.component';
+import { FontainesABoireComponent } from './content/fontaines-a-boire/fontaines-a-boire.component';
+import { ReparationVeloComponent } from './content/reparation-velo/reparation-velo.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +36,10 @@ import { MatRadioModule } from '@angular/material/radio';
         StatistiqueComponent,
         MoreInfoComponent,
         ChartComponent,
-        MapComponent
+        MapComponent,
+        AjoutPointInteretComponent,
+        FontainesABoireComponent,
+        ReparationVeloComponent
     ],
     imports: [
         BrowserModule,

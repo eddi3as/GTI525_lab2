@@ -1,7 +1,7 @@
 {
   "name": "lab2",
   "version": "1.0.0",
-  "description": "mean app for bikes ETS", 
+  "description": "mean app for bikes ETS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,7 @@
     "copyviews": "copyfiles --all ./views/* ./dist",
     "copyassets": "copyfiles --all ./views/assets/* ./dist",
     "start-dev": "SET NODE_ENV=dev && node dist/index.js",
+    "start-dev-mac": "export NODE_ENV=dev && node dist/index.js",
     "start": "SET NODE_ENV=production && node dist/index.js"
   },
   "author": "Equipe 8 GTI525",
@@ -25,7 +26,8 @@
     "mongoose": "^6.3.5",
     "morgan": "^1.10.0",
     "shx": "^0.3.4",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

@@ -28,8 +28,7 @@ export class StatistiqueComponent implements OnInit {
             borne_name: this.cmpt?.name,
             debut: this.dateFrom,
             fin: this.dateTo
-        };
-        console.log(this.cmpt)
+        }
 
         this.service.getStats(info).subscribe((data: any) => {
             this.ngxService.hide();

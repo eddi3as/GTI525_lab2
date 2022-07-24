@@ -1,0 +1,79 @@
+<div class="ajout-point-interet-container">
+
+    <div class="row">
+        <div class="col">
+            <h2>Ajout d'un points d'intéret</h2>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <label for="nom" class="col-sm-3 col-form-label label">Nom du lieu:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="nom" [(ngModel)]="nomLieu">
+        </div>
+    </div>
+
+    <div class="row" *ngIf="selectedType === types[1]">
+        <label for="adresse" class="col-sm-3 col-form-label label">Adresse:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="adresse" [(ngModel)]="adresse">
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="arrondissement" class="col-sm-3 col-form-label label">Arrondissement:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="arrondissement" [(ngModel)]="arrondissement">
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="type" class="col-sm-3 col-form-label label">Type:</label>
+        <div class="col-sm-9">
+            <select  class="form-select" class="form-control" id="type" [(ngModel)]="selectedType">
+                <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="annee" class="col-sm-3 col-form-label label">Année d'établissement:</label>
+        <div class="col-sm-9">
+            <select  class="form-select" class="form-control" id="annee" [(ngModel)]="selectedAnnee">
+                <option *ngFor="let annee of annees" [value]="annee">{{ annee }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="selectedType === types[0]">
+        <label class="col-sm-4 col-form-label">Coordonées géographiques:</label>
+
+        <label for="longitude" class="col-sm-2 col-form-label label">ou Longitude:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="longitude" [(ngModel)]="longitude">
+        </div>
+
+        <label for="latitude" class="col-sm-2 col-form-label label">Latitude:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="latitude" [(ngModel)]="latitude">
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="remarques" class="col-sm-3 col-form-label label">Remarques:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="remarques" [(ngModel)]="remarque">
+        </div>
+    </div>
+
+    <hr>
+
+    <button type="button" class="btn btn-secondary">
+        Annuler
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="ajoutPointInteret()">
+        Envoyer
+    </button>
+</div>

@@ -1,7 +1,7 @@
 <div class="point-interet-container">
     <div class="row">
         <div class="col">
-            <h3><u>Points d'intérets</u></h3>
+            <h3><u>Fontaines à boire</u></h3>
         </div>
     </div>
     <div class="row">
@@ -18,13 +18,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let point of pointsInteret">
-                        <th scope="row">{{ point["neighbourhood"]}}</th>
-                        <td>{{ point["type"] ? point.type : "Fontaine"}}</td>
-                        <td>{{point["parc_name"]}}</td>
-                        <td>{{point["intersection"]}}</td>
+                    <tr *ngFor="let fontaine of fontaines">
+                        <th scope="row">{{ fontaine["neighbourhood"]}}</th>
+                        <td>Fontaine à boire</td>
+                        <td>{{fontaine["parc_name"]}}</td>
+                        <td>{{fontaine["intersection"]}}</td>
                         <td><button class="stats-search-btn" (click)="statsSearch()" ><i class="fa fa-map-marker" aria-hidden="true"></i></button></td>
-                        <td><button class="stats-search-btn" (click)="setSelected(point)">Plus</button></td>
+                        <td><button class="stats-search-btn" (click)="setSelected(fontaine)">Plus</button></td>
                     </tr>
                 </tbody>
             </table>

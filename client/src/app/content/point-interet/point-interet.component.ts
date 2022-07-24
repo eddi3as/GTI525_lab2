@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CSVService } from 'src/app/services/csv.service';
 import { FontaineService } from 'src/app/services/fontaines.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AtelierService } from 'src/app/services/ateliers.service';
 
 @Component({
   selector: 'app-point-interet',
@@ -9,25 +10,50 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./point-interet.component.css']
 })
 export class PointInteretComponent implements OnInit {
-  fontaines: any[] = [];
+  pointsInteret: any[] = [];
   fnt_arr: any;
   showMoreInfo: boolean = false;
   selectedFontaine: any;
 
   constructor(private csvService: CSVService,
-              private service: FontaineService,
+              private serviceFontaines: FontaineService,
+              private serviceAteliers: AtelierService,
               private ngxService: NgxSpinnerService) { }
 
   async ngOnInit() {
     this.ngxService.show();
-    this.fontaines = await this.csvService.getFontaines();
-    //API CALL for IT-3
-    /*
-    this.service.getFontaines().subscribe((data: any) => {
-      this.fnt_arr = JSON.parse(data.result);
-      console.log(this.fnt_arr[0]);
-    });
-    */
+    this.pointsInteret = await this.csvService.getFontaines()
+    
+    this.serviceFontaines.getFontaines().subscribe((data: any) => {
+        data.result.forEach((fontaine: any) => {
+            this.pointsInteret.push({
+                id: fontaine.ID,
+                neighbourhood: fontaine.arrondissement,
+                parc_name: fontaine.nom_lieu,
+                install_date: fontaine.date_installation,
+                comment: fontaine.remarques,
+                latitude: fontaine.latitude,
+                longitude: fontaine.longitude,
+                type: "Fontaine"
+            })
+        })
+    })
+
+        
+    this.serviceAteliers.getAteliers().subscribe((data: any) => {
+        data.result.forEach((atelier: any) => {
+            this.pointsInteret.push({
+                id: atelier.id,
+                neighbourhood: atelier.arrondissement,
+                parc_name: atelier.nom_lieu,
+                install_date: atelier.date_installation,
+                comment: atelier.remarques,
+                intersection: atelier.adresse,
+                type: "Atelier"
+            })
+        })
+    })
+   
     this.ngxService.hide();
   }
 

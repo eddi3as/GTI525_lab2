@@ -1,0 +1,23 @@
+.ajout-point-interet-container {
+    margin-top: 1em;
+    background-color: white;
+    padding-top: 0.5em;
+}
+
+.ajout-point-interet-container > div{
+    margin-bottom: 0.5em;
+}
+
+hr {
+    height: 0.25em;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.label {
+    text-align: right;
+}
+
+.btn {
+    margin-right:1em;
+}
