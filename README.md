@@ -79,7 +79,9 @@ Vous devez implémenter aussi la ressource pointsdinteret dans l’API REST, ce 
 Pour la ressource pointsdinteret, vous devez implémenter aussi la fonctionnalité qui permet d’ajouter un nouveau point d'intérêt via API REST. L’API doit accepter que l’application frontale fasse une requête HTTP dont le corps contient un JSON qui contient les détails du point d’intérêt à ajouter. Les besoins pour implémenter la fonctionnalité nécessaire côté frontal sont décrits dans la tâche T3.
 
 
-# T2: Utilisation des données [x]
+# T2: Utilisation des données 
+
+[x]
 
 ## T2.1 Edwin
  Vous devez créer des tableaux ou équivalents (le terme dépend de votre choix de base de données), pour stocker les données des fichiers d’entrées fournis avec l’énoncé du livrable 1 ; c.-à-d., les informations sur les compteurs et sur les fontaines à boire. Votre conception doit permettre aux utilisateurs d’ajouter un nouveau point d’intérêt, tel qu’une nouvelle fontaine à boire ou un atelier de réparation vélo. 
