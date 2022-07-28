@@ -26,7 +26,14 @@ export class ComptageVeloComponent implements OnInit {
 
     async ngOnInit() {
       this.ngxService.show();
-      this.compteurs = await this.csvService.getCompteurs();
+      this.compteurService.getCompteurs().subscribe((data: any) => {
+        /* TODO review data in html or csv and reload in db*/
+        let jsonObj = JSON.parse(data.result);
+        jsonObj.forEach((compteur: any) => {
+          this.compteurs.push({compteur});
+        });
+      });
+    //  this.compteurs = await this.csvService.getCompteurs();
       this.ngxService.hide();
     }     
 
