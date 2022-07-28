@@ -29,7 +29,6 @@ export function compteursToJSON(lines: string[]): Compteur[]{
     let objs: Compteur[] = [];
     lines.forEach(i => {
       let arr = i.split(",");
-      //100041114,,Eco-Display Parc Stanley,Actif,45.55759296561201,-73.67322198070093,2018
       let compt: Compteur = {
         id: Number(arr[0]),
         old_id: Number(arr[1]),
@@ -40,6 +39,46 @@ export function compteursToJSON(lines: string[]): Compteur[]{
         year_build: arr[6].substring(0, 4)
       };
       objs.push(compt);
+    });
+    return objs;
+}
+
+export function compteursToModel(lines: any[]): Compteur[]{
+    let objs: Compteur[] = [];
+    lines.forEach(obj => {
+      let compt: Compteur = {
+        id: obj.ID,
+        old_id: obj.Ancien_ID,
+        name: obj.Nom,
+        status: obj.Statut,
+        latitude: obj.Latitude,
+        longitude: obj.Longitude,
+        year_build: obj.Annee_implante
+      };
+      objs.push(compt);
+    });
+    return objs;
+}
+
+export function fontainesToModel(lines: any[]): Fontaine[]{
+    let objs: Fontaine[] = [];
+    lines.forEach(obj => {
+      let fontaine: Fontaine = {
+        id: obj.ID,
+        neighbourhood: obj.Arrondissement,
+        parc_name: obj.Nom_parc_lieu,
+        near_site: obj.Proximité_jeux_repère,
+        intersection: obj.Intersection,
+        state: obj.Etat,
+        install_date: obj.Date_installation,
+        comment: obj.Remarque,
+        accuracy: obj.Precision_localisation,
+        x: obj.X,
+        y: obj.Y,
+        longitude: obj.Longitude,
+        latitude: obj.Latitude
+      };
+      objs.push(fontaine);
     });
     return objs;
 }
