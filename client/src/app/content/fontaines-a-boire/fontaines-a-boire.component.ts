@@ -19,9 +19,18 @@ export class FontainesABoireComponent implements OnInit {
   
     async ngOnInit() {
         this.ngxService.show()
-        this.fontaines = await this.csvService.getFontaines()
         
         this.service.getFontaines().subscribe((data: any) => {
+            /* TODO change data or change names in csv and reload in db
+            
+                    id: fontaine.ID,
+                    neighbourhood: fontaine.Arrondissement,
+                    parc_name: fontaine.Nom_parc_lieu,
+                    install_date: fontaine.date_installation,
+                    comment: fontaine.Remarques,
+                    latitude: fontaine.X,
+                    longitude: fontaine.Y
+            */
             data.result.forEach((fontaine: any) => {
                 this.fontaines.push({
                     id: fontaine.id,

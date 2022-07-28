@@ -22,7 +22,6 @@ export class PointInteretComponent implements OnInit {
 
   async ngOnInit() {
     this.ngxService.show();
-    this.pointsInteret = await this.csvService.getFontaines()
     
     this.serviceFontaines.getFontaines().subscribe((data: any) => {
         data.result.forEach((fontaine: any) => {
