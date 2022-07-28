@@ -21,7 +21,7 @@ export class FontainesABoireComponent implements OnInit {
         this.ngxService.show()
         
         this.service.getFontaines().subscribe((data: any) => {
-            /* TODO change data or change names in csv and reload in db
+            /* TODO review data in html or csv and reload in db
             
                     id: fontaine.ID,
                     neighbourhood: fontaine.Arrondissement,
