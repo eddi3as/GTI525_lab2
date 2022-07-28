@@ -45,7 +45,7 @@ export class FontainesABoireComponent implements OnInit {
         this.showMoreInfo = true;
     }
 
-    getSelectedFontaine() {
+    getSelected() {
         return this.selectedFontaine
     }
 }

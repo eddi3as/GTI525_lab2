@@ -8,8 +8,15 @@
         </div>
         <div class="details-container">
             <h5 class="card-title">Détails</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Proximité: {{fontaine.near_site}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Remarque: {{fontaine.comment}}</h6>
+            <ng-container *ngIf="categoryPointInteret == 'fontaine'">
+                <h6 class="card-subtitle mb-2 text-muted">Proximité: {{fontaine.near_site}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Remarque: {{fontaine.comment}}</h6>
+            </ng-container>
+            <ng-container *ngIf="categoryPointInteret == 'atelier'">
+                <h6 class="card-subtitle mb-2 text-muted">Proximité: </h6>
+                <h6 class="card-subtitle mb-2 text-muted">Remarque: </h6>
+            </ng-container>
+            
         </div>
         
     </div>
