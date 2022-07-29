@@ -2,6 +2,7 @@ import { collections } from '../service/database.service'
 import fs from 'fs'
 
 export class Utils{
+    public static atelier = "atelier";
     private static imported = "stats-imported";
     private static months = ["January", "February", "March", "April", "May", "June",
                               "July", "August", "September", "October", "November", "December"];
@@ -77,5 +78,17 @@ export class Utils{
     data[2] = day; 
     data[3] = "00:00:00"; 
     return data;
+  }
+
+  public static setFilterDates(filter: any, debut: any, fin: any) {
+    if(debut && fin){
+
+    }
+    else if(debut){
+
+    }
+    else if(fin){
+
+    }
   }
 }

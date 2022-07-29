@@ -2,18 +2,25 @@ import { collections } from '../service/database.service'
 import Compteur from '../models/compteur';
 
 export class CompteurCtrl {
-
-    private compteurs: Compteur[];
-
-    constructor() {
-        this.compteurs = [];
-    }
+    constructor() {}
 
     public async getCompteur(filter: any){
-        if(this.compteurs.length > 0)
-            return JSON.stringify(this.compteurs);
+        let compteurs = [];
+        if(filter.limit){
+            compteurs = (await collections.compteurs.find<Compteur>(filter).limit(filter.limit).toArray()) as Compteur[];
+        }else{
+            compteurs = (await collections.compteurs.find<Compteur>(filter).toArray()) as Compteur[];
+        }
+        return JSON.stringify(compteurs);
+    }
 
-        this.compteurs = (await collections.compteurs.find<Compteur>(filter).toArray()) as Compteur[];
-        return JSON.stringify(this.compteurs);
+    public async getCompteurStats(filter: any){
+        let compteurs = [];
+        if(filter.limit){
+            compteurs = (await collections.stats.find<Compteur>(filter).limit(filter.limit).toArray()) as Compteur[];
+        }else{
+            compteurs = (await collections.stats.find<Compteur>(filter).toArray()) as Compteur[];
+        }
+        return JSON.stringify(compteurs);
     }
 }
