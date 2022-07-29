@@ -1,0 +1,25 @@
+
+.card-body {
+    display: flex;
+}
+.map-container {
+    display: inline-block;
+    width: 15em;
+    height: 10em;
+}
+.map-frame {
+    border: 2px solid black;
+    width: 15em;
+    height: 10em;
+}
+#map {
+    width: auto;
+    height: 19.5em;
+}
+
+.details-container {
+    display: flex;
+    margin: 0 0 0 1em;
+    flex-direction: column;
+}
+
