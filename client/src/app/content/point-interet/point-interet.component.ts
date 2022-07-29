@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CSVService } from 'src/app/services/csv.service';
+import { fontainesToModel } from 'src/utils/utils';
 import { FontaineService } from 'src/app/services/fontaines.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AtelierService } from 'src/app/services/ateliers.service';
@@ -15,28 +15,15 @@ export class PointInteretComponent implements OnInit {
   showMoreInfo: boolean = false;
   selectedFontaine: any;
 
-  constructor(private csvService: CSVService,
-              private serviceFontaines: FontaineService,
+  constructor(private serviceFontaines: FontaineService,
               private serviceAteliers: AtelierService,
               private ngxService: NgxSpinnerService) { }
 
   async ngOnInit() {
     this.ngxService.show();
-    this.pointsInteret = await this.csvService.getFontaines()
     
     this.serviceFontaines.getFontaines().subscribe((data: any) => {
-        data.result.forEach((fontaine: any) => {
-            this.pointsInteret.push({
-                id: fontaine.ID,
-                neighbourhood: fontaine.arrondissement,
-                parc_name: fontaine.nom_lieu,
-                install_date: fontaine.date_installation,
-                comment: fontaine.remarques,
-                latitude: fontaine.latitude,
-                longitude: fontaine.longitude,
-                type: "Fontaine"
-            })
-        })
+      this.pointsInteret = fontainesToModel(data.result);
     })
 
         

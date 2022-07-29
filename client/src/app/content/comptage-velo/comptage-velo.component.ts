@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Compteur } from 'src/app/models/compteur';
-import { CSVService } from 'src/app/services/csv.service';
+import { compteursToModel } from 'src/utils/utils';
 import { CompteurService } from 'src/app/services/compteurs.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,15 +19,17 @@ export class ComptageVeloComponent implements OnInit {
     selectedCmpt: Compteur | undefined;
     closeResult: string = '';
 
-    constructor(private csvService: CSVService,
-                private compteurService: CompteurService,
+    constructor(private compteurService: CompteurService,
                 private ngxService: NgxSpinnerService,
                 private modalService: NgbModal) { }
 
     async ngOnInit() {
       this.ngxService.show();
-      this.compteurs = await this.csvService.getCompteurs();
-      this.ngxService.hide();
+      this.compteurService.getCompteurs().subscribe((data: any) => {
+        let jsonObj = JSON.parse(data.result);
+        this.compteurs = compteursToModel(jsonObj);
+        this.ngxService.hide();
+      });
     }     
 
     /**
