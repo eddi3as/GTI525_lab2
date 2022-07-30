@@ -24,12 +24,13 @@ export class CompteurRouter {
   }
 
   public async allCompteurs(req: Request, res: Response, next: NextFunction) {
-    let filter = null;
-    const limit = req.params.limite;
-    if(limit)
-      filter.limit = limit;
+    const limitParam = req.query.limite;
+    let filter = {};
+    let limit = 0;
+    if(limitParam)
+      limit = parseInt(limitParam.toString());
 
-    let results = await this._cmptCtrl.getCompteur(filter);
+    let results = await this._cmptCtrl.getCompteur(filter, limit);
     res.status(200)
     .send({
       message: 'Success from allCompteurs',
@@ -40,12 +41,9 @@ export class CompteurRouter {
 
   public async getCompteur(req: Request, res: Response, next: NextFunction) {
     const id = req.params.id;
-    const debut = req.query.debut;
-    const fin = req.query.fin;
-    let filter = { ID: id };
+    let filter = { ID: parseInt(id) };
     
-    Utils.setFilterDates(filter, debut, fin);
-    let results = await this._cmptCtrl.getCompteur(filter);
+    let results = await this._cmptCtrl.getCompteur(filter, 0);
     res.status(200)
     .send({
       message: 'Success from getCompteur',
@@ -58,15 +56,16 @@ export class CompteurRouter {
     const id = req.params.id;
     const debut = req.query.debut;
     const fin = req.query.fin;
-    const limit = req.query.limite;
-    let filter = { ID: id };
+    const limitParam = req.query.limite;
+    let limit = 0;
+    let filter = { borne_id: id };
 
-    if(limit)
-      filter["limit"] = limit;
+    if(limitParam)
+      limit = parseInt(limitParam.toString());
 
     Utils.setFilterDates(filter, debut, fin);
 
-    let results = await this._cmptCtrl.getCompteurStats(filter);
+    let results = await this._cmptCtrl.getCompteurStats(filter, limit);
     res.status(200)
     .send({
       message: 'Success from getCompteur',
@@ -74,29 +73,14 @@ export class CompteurRouter {
       result: results
     });
   }
-  
-  public ajoutCompteur(req: Request, res: Response, next: NextFunction) {
 
-    res.status(200)
-    .send({
-      message: 'Success from ajoutCompteur',
-      status: res.status,
-    });
-  }
-
-  /**
-     * Take each handler, and attach to one of the Express.Router's
-     * endpoints.
-     */
   init() {
     this._router.get('/compteurs', this.allCompteurs.bind(this));
-    this._router.get('/compteur/:id', this.getCompteur.bind(this));
-    this._router.get('/compteur/:id/passages', this.getCompteurStats.bind(this));
-    this._router.post('/ajout-compteur', this.ajoutCompteur.bind(this));
+    this._router.get('/compteurs/:id', this.getCompteur.bind(this));
+    this._router.get('/compteurs/:id/passages', this.getCompteurStats.bind(this));
 
     //100054585?debut=20200101&fin=20200131
   }
-
 }
 
 export const compteurRoutes = new CompteurRouter();
