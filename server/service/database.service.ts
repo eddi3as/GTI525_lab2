@@ -1,7 +1,11 @@
 import * as mongoDB from "mongodb";
 import * as dotenv from "dotenv";
 
-export const collections: { stats?: mongoDB.Collection, compteurs? : mongoDB.Collection, fontaines?: mongoDB.Collection, ateliers?: mongoDB.Collection } = {}
+export const collections: { stats?: mongoDB.Collection,
+                            compteurs? : mongoDB.Collection,
+                            fontaines?: mongoDB.Collection,
+                            ateliers?: mongoDB.Collection,
+                            pointsinteret?: mongoDB.Collection } = {}
 
 export async function connectToDatabase () {
     dotenv.config();
@@ -16,11 +20,13 @@ export async function connectToDatabase () {
     const compteurCollection: mongoDB.Collection = db.collection(process.env.CNT_COLLECTION_NAME);
     const fontaineCollection: mongoDB.Collection = db.collection(process.env.FNT_COLLECTION_NAME);
     const atelierCollection: mongoDB.Collection = db.collection(process.env.ATELIER_COLLECTION_NAME);
+    const pointsinteretCollection: mongoDB.Collection = db.collection(process.env.POINTSINTERET_COLLECTION_NAME);
 
     collections.stats = statsCollection;
     collections.compteurs = compteurCollection;
     collections.fontaines = fontaineCollection;
     collections.ateliers = atelierCollection;
+    collections.pointsinteret = pointsinteretCollection;
     
     console.log(`Successfully connected to database: ${db.databaseName} and collection: ${statsCollection.collectionName}`);
     console.log(`waiting for localhost...`);

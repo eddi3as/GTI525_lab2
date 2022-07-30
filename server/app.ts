@@ -5,6 +5,7 @@ import { compteurRoutes } from './routes/compteurRouter';
 import { fontaineRoutes } from './routes/fontaineRouter';
 import { atelierRoutes } from './routes/atelierRouter';
 import { statsRoutes } from './routes/statsRouter';
+import { pointinteretRoutes } from './routes/pointdinteretRouter';
 
 const path = __dirname + '/views/';
 const corsOptions = {
@@ -49,6 +50,7 @@ class App {
     this.expressApp.use(this.BASE_API, fontaineRoutes.router);
     this.expressApp.use(this.BASE_API, atelierRoutes.router);
     this.expressApp.use(this.BASE_API, statsRoutes.router);
+    this.expressApp.use(this.BASE_API, pointinteretRoutes.router);
   }
 
 }
