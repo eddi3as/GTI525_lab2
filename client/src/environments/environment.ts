@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiKey: '/gti525/v1'
+  apiKey: 'GTI525_API_ACCESS_GRANTED',
+  apiURL: '/gti525/v1'
 };
 
 /*

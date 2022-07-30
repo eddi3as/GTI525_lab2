@@ -8,7 +8,7 @@ import { Compteur } from 'src/app/models/compteur';
   providedIn: 'root'
 })
 export class CompteurService {
-  private url = environment.apiKey + '/compteurs';
+  private url = environment.apiURL + '/compteurs';
   allCompteursSubject = new Subject<any>();
   selectedCompteurSubject = new Subject<any>();
 
@@ -21,12 +21,15 @@ export class CompteurService {
   setAllCompteurs(allCompteurs: Compteur[]) {
     this.allCompteursSubject.next(allCompteurs);
   }
+  
   setSelectedCompteur(selectedCompteur: Compteur) {
     this.selectedCompteurSubject.next(selectedCompteur);
   }
+
   getAllCompteurs(): Observable<any> {
     return this.allCompteursSubject.asObservable();
   }
+  
   getSelectedCompteur(): Observable<any> {
     return this.selectedCompteurSubject.asObservable();
   }

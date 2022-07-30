@@ -1,5 +1,6 @@
 import { Compteur } from "src/app/models/compteur";
 import { Fontaine } from "src/app/models/fontaine";
+import { PointInteret } from "src/app/models/pointinteret";
 
 export function fontainesToJSON(lines: string[]): Fontaine[]{
     let objs: Fontaine[] = [];
@@ -79,6 +80,32 @@ export function fontainesToModel(lines: any[]): Fontaine[]{
         latitude: obj.Latitude
       };
       objs.push(fontaine);
+    });
+    return objs;
+}
+
+export function pointToModel(lines: any[]): PointInteret[]{
+    let objs: PointInteret[] = [];
+    lines.forEach(obj => {
+      let etat = obj.Etat === undefined ? '' : obj.Etat;
+      let near = obj.Proximité_jeux_repère === undefined ? obj.Proximite_jeux_repere : obj.Proximité_jeux_repère;
+      let pt: PointInteret = {
+        id: obj.ID,
+        neighbourhood: obj.Arrondissement,
+        parc_name: obj.Nom_parc_lieu,
+        near_site: near,
+        intersection: obj.Intersection,
+        state: etat,
+        install_date: obj.Date_installation,
+        comment: obj.Remarque,
+        accuracy: obj.Precision_localisation,
+        x: obj.X,
+        y: obj.Y,
+        longitude: obj.Longitude,
+        latitude: obj.Latitude,
+        type: obj.Type
+      };
+      objs.push(pt);
     });
     return objs;
 }

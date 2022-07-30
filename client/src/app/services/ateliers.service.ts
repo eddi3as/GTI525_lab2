@@ -7,7 +7,7 @@ import { Atelier } from '../models/atelier'
     providedIn: 'root'
 })
 export class AtelierService {
-    private url = environment.apiKey + '/ateliers';
+    private url = environment.apiURL + '/ateliers';
 
     constructor(private http: HttpClient) { }
 

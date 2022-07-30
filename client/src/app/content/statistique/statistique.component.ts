@@ -26,9 +26,9 @@ export class StatistiqueComponent implements OnInit {
         let info : StatsSearch = {
             borne_id: this.cmpt?.id,
             borne_name: this.cmpt?.name,
-            debut: this.dateFrom,
-            fin: this.dateTo
-        }
+            debut: this.dateFrom.replace(/-/g, ""),
+            fin: this.dateTo.replace(/-/g, "")
+        };
 
         this.service.getStats(info).subscribe((data: any) => {
             this.ngxService.hide();

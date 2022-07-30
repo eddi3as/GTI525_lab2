@@ -20,7 +20,7 @@
                 <tbody>
                     <tr *ngFor="let point of pointsInteret">
                         <th scope="row">{{ point["neighbourhood"]}}</th>
-                        <td>{{ point["type"] ? point.type : "Fontaine"}}</td>
+                        <td>{{ point["type"] ? point.type : "fontaine"}}</td>
                         <td>{{point["parc_name"]}}</td>
                         <td>{{point["intersection"]}}</td>
                         <td><button class="stats-search-btn" (click)="statsSearch()" ><i class="fa fa-map-marker" aria-hidden="true"></i></button></td>
@@ -30,7 +30,7 @@
             </table>
             <div class="stats-search" *ngIf="showMoreInfo">
               <h1>
-              <app-more-info [fontaine]="getSelected()"></app-more-info>
+              <app-more-info [point]="getSelected()"></app-more-info>
               </h1>
             </div> 
         </div>

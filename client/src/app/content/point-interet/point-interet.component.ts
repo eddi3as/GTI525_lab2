@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { fontainesToModel } from 'src/utils/utils';
-import { FontaineService } from 'src/app/services/fontaines.service';
+import { pointToModel } from 'src/utils/utils';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AtelierService } from 'src/app/services/ateliers.service';
+import { PointInteretService } from 'src/app/services/pointinteret.service';
 
 @Component({
   selector: 'app-point-interet',
@@ -13,46 +12,29 @@ export class PointInteretComponent implements OnInit {
   pointsInteret: any[] = [];
   fnt_arr: any;
   showMoreInfo: boolean = false;
-  selectedFontaine: any;
+  selectedPt: any;
 
-  constructor(private serviceFontaines: FontaineService,
-              private serviceAteliers: AtelierService,
+  constructor(private service: PointInteretService,
               private ngxService: NgxSpinnerService) { }
 
   async ngOnInit() {
     this.ngxService.show();
-    
-    this.serviceFontaines.getFontaines().subscribe((data: any) => {
-      this.pointsInteret = fontainesToModel(data.result);
-    })
 
-        
-    this.serviceAteliers.getAteliers().subscribe((data: any) => {
-        data.result.forEach((atelier: any) => {
-            this.pointsInteret.push({
-                id: atelier.id,
-                neighbourhood: atelier.arrondissement,
-                parc_name: atelier.nom_lieu,
-                install_date: atelier.date_installation,
-                comment: atelier.remarques,
-                intersection: atelier.adresse,
-                type: "Atelier"
-            })
-        })
-    })
-   
-    this.ngxService.hide();
+    this.service.getAllPointsInteret().subscribe((data: any) => {
+      this.pointsInteret = pointToModel(data.result);
+      this.ngxService.hide();
+    });
   }
 
   statsSearch() {}
 
-  setSelected(fontaine: any) {
-    this.selectedFontaine = fontaine;
+  setSelected(pt: any) {
+    this.selectedPt = pt;
     this.showMoreInfo = true;
   }
 
   getSelected() {
-    return this.selectedFontaine;
+    return this.selectedPt;
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { fontainesToModel } from 'src/utils/utils'
 import { FontaineService } from 'src/app/services/fontaines.service'
 import { NgxSpinnerService } from 'ngx-spinner'
+import { PointInteretService } from 'src/app/services/pointinteret.service'
 @Component({
   selector: 'app-fontaines-a-boire',
   templateUrl: './fontaines-a-boire.component.html',
@@ -13,13 +14,14 @@ export class FontainesABoireComponent implements OnInit {
     showMoreInfo: boolean = false
     selectedFontaine: any
   
-    constructor(private service: FontaineService,
+    constructor(private service2: FontaineService,
+                private service: PointInteretService,
                 private ngxService: NgxSpinnerService) { }
   
     async ngOnInit() {
         this.ngxService.show();
         
-        this.service.getFontaines().subscribe((data: any) => {
+        this.service.getPointFontaines().subscribe((data: any) => {
             this.fontaines = fontainesToModel(data.result);
             this.ngxService.hide();
         });

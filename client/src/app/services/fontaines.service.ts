@@ -7,7 +7,7 @@ import { Fontaine } from '../models/fontaine';
   providedIn: 'root'
 })
 export class FontaineService {
-  private url = environment.apiKey + '/fontaines';
+  private url = environment.apiURL + '/fontaines';
 
   constructor(private http: HttpClient) { }
 

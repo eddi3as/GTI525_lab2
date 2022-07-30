@@ -12,6 +12,8 @@ export class MoreInfoComponent implements OnInit {
   fontaine!: any;
   @Input()
   atelier!: any;
+  @Input()
+  point!: any;
   private map!: leaf.Map;
   private mapTiles!: leaf.TileLayer;
   private mapMarker!: leaf.Marker;
@@ -21,20 +23,16 @@ export class MoreInfoComponent implements OnInit {
   constructor(private service: MapService) { }
 
   ngOnInit(): void {
+    this.categoryPointInteret = this.point !== undefined ? 
+                                                (this.point.type === undefined ? 'fontaine' : this.point.type)
+                                                : this.categoryPointInteret;
     this.initMap();
   }
   
   ngOnChanges() {
     if (this.map) {
-      if (this.categoryPointInteret === "atelier") {
-        const lat = this.service.getCoordinatesByAddress(this.atelier.intersection);
-        console.log(lat);
-        this.service.getCoordinatesByAddress(this.atelier.intersection).subscribe((data: any) => {
-          this.placeMarker(data[0].lat, data[0].lon); //Atelier
-        });
-      } else if (this.categoryPointInteret === "fontaine") {
-        this.placeMarker(this.fontaine.latitude, this.fontaine.longitude); //Fontaine
-      }
+      this.categoryPointInteret = this.point !== undefined ? this.point.type : this.categoryPointInteret;
+      this.validateType();
     }
   }
 
@@ -51,14 +49,26 @@ export class MoreInfoComponent implements OnInit {
 
     this.mapTiles.addTo(this.map);
 
+    this.validateType();
+  }
+  
+  private validateType() {
     if (this.categoryPointInteret === "atelier") {
-      this.service.getCoordinatesByAddress(this.atelier.intersection).subscribe((data: any) => {
-        this.placeMarker(data[0].lat, data[0].lon); //Atelier
-      });
+      this.checkAddress();
     } else if (this.categoryPointInteret === "fontaine") {
-      this.placeMarker(this.fontaine.latitude, this.fontaine.longitude); //Fontaine
+      this.placeMarker(this.point.latitude, this.point.longitude); //Fontaine
     }
-    
+  }
+
+  private checkAddress() {
+    let defaultCoords = [{lat: 45.5016889, lon: -73.567255999999 }];
+    let address = this.point.intersection === undefined || this.point.intersection === '' ?
+                    '1100 Rue Notre-Dame montreal' : this.point.intersection;
+
+    this.service.getCoordinatesByAddress(address).subscribe((data: any) => {
+      let coords = data[0] === undefined ? defaultCoords : data;
+      this.placeMarker(coords[0].lat, coords[0].lon); //Atelier
+    });
   }
 
 

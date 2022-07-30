@@ -117,7 +117,7 @@ export class ChartComponent implements OnInit {
         let dates: string[] = ["0"]
 
         if(this.filter === "Jour") {
-            this.stats.forEach(i => {
+            this.stats.forEach(i => {//TODO need to parse stats 
                 dates.push(moment(i.Date).toDate().getDate().toString())
                 usage.push(i.count)
             })

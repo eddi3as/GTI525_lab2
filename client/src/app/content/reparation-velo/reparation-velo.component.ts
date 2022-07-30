@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { AtelierService } from 'src/app/services/ateliers.service'
 import { NgxSpinnerService } from 'ngx-spinner'
+import { PointInteretService } from 'src/app/services/pointinteret.service'
+import { pointToModel } from 'src/utils/utils'
 
 @Component({
   selector: 'app-reparation-velo',
@@ -13,26 +15,16 @@ export class ReparationVeloComponent implements OnInit {
     showMoreInfo: boolean = false
     selectedAtelier: any
   
-    constructor(private service: AtelierService,
+    constructor(private service2: AtelierService,
+                private service: PointInteretService,
                 private ngxService: NgxSpinnerService) { }
   
     async ngOnInit() {
         this.ngxService.show()
-        
         this.service.getAteliers().subscribe((data: any) => {
-            data.result.forEach((atelier: any) => {
-                this.ateliers.push({
-                    id: atelier.id,
-                    neighbourhood: atelier.arrondissement,
-                    parc_name: atelier.nom_lieu,
-                    install_date: atelier.date_installation,
-                    comment: atelier.remarques,
-                    intersection: atelier.adresse,
-                })
-            })
-        })
-        
-        this.ngxService.hide()
+            this.ateliers = pointToModel(data.result);
+            this.ngxService.hide();
+        });
     }
 
     statsSearch() {}
