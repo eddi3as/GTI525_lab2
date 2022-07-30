@@ -16,7 +16,7 @@ use a terminal to import excel for fontaines and compteurs <b> use the csv from 
 - navigate to the bin folder of the MongoDB Database Tools
   <b>ex: cd C:\Program Files\MongoDB\Tools\100\bin</b>
 #### run commands:
-    mongoimport --db=gti525 --collection=fontaines --type=csv --headerline --file=...path to fontaines csv
+    mongoimport --db=gti525 --collection=pointsinteret --type=csv --headerline --file=...path to fontaines csv
     mongoimport --db=gti525 --collection=compteurs --type=csv --headerline --file=...path to compteurs csv
 
 
