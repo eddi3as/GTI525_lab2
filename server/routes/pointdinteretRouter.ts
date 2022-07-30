@@ -60,12 +60,12 @@ export class PointInteretRouter {
   public async addPointInteret(req: Request, res: Response, next: NextFunction) {
     let pointint = new PointInteret(
       parseInt(req.body.id), 
-      req.body.arrondissement, 
-      req.body.nom_parc_lieu,
+      req.body.neighbourhood, 
+      req.body.parc_name,
       "", 
       "", 
-      req.body.date_installation,
-      req.body.remarques, 
+      req.body.install_date,
+      req.body.comment, 
       "", 
       1,
       1, 
