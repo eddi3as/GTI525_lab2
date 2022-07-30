@@ -14,9 +14,6 @@ export class CompteurRouter {
     return this._router;
   }
 
-  /**
-   * Initialiser le router
-   */
   constructor() {
     this._cmptCtrl = new CompteurCtrl();
     this._router = Router();
@@ -78,8 +75,6 @@ export class CompteurRouter {
     this._router.get('/compteurs', this.allCompteurs.bind(this));
     this._router.get('/compteurs/:id', this.getCompteur.bind(this));
     this._router.get('/compteurs/:id/passages', this.getCompteurStats.bind(this));
-
-    //100054585?debut=20200101&fin=20200131
   }
 }
 

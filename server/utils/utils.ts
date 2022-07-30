@@ -46,6 +46,18 @@ export class Utils{
     });
     return db_data;
   }
+
+  public static setFilterDates(filter: any, debut: any, fin: any) {
+    if(debut && fin){
+      filter["Date"] = { $gte: new Date(this.toISODate(debut)), $lte: new Date(this.toISODate(fin)) };
+    }
+    else if(debut){
+      filter["Date"] = { $gte: new Date(this.toISODate(debut)) };
+    }
+    else if(fin){
+      filter["Date"] = { $lte: new Date(this.toISODate(fin)) };
+    }
+  }
   
   public static toISODate(csv_date: string){
     let date_utc = csv_date.indexOf("-") != -1 ? this.getFromCSV(csv_date) : this.getFromParams(csv_date);
@@ -78,17 +90,5 @@ export class Utils{
     data[2] = day; 
     data[3] = "00:00:00"; 
     return data;
-  }
-
-  public static setFilterDates(filter: any, debut: any, fin: any) {
-    if(debut && fin){
-
-    }
-    else if(debut){
-
-    }
-    else if(fin){
-
-    }
   }
 }
