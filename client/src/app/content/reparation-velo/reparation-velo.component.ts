@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { AtelierService } from 'src/app/services/ateliers.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { PointInteretService } from 'src/app/services/pointinteret.service'
 import { pointToModel } from 'src/utils/utils'
@@ -15,8 +14,7 @@ export class ReparationVeloComponent implements OnInit {
     showMoreInfo: boolean = false;
     selectedAtelier: any;
   
-    constructor(private service2: AtelierService,
-                private service: PointInteretService,
+    constructor(private service: PointInteretService,
                 private ngxService: NgxSpinnerService) { }
   
     async ngOnInit() {
