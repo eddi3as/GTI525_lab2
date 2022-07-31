@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Compteur } from 'src/app/models/compteur';
+import { authHeader } from '../services/security.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class CompteurService {
   constructor(private http: HttpClient) { }
 
   getCompteurs(){
-    return this.http.get(this.url);
+    const headers = authHeader();
+    return this.http.get(this.url, headers);
   }
 
   setAllCompteurs(allCompteurs: Compteur[]) {
