@@ -3,6 +3,7 @@ import fs from 'fs'
 
 export class Utils{
     public static atelier = "atelier";
+    public static token = "GTI525_API_ACCESS_GRANTED";
     private static imported = "stats-imported";
     private static months = ["January", "February", "March", "April", "May", "June",
                               "July", "August", "September", "October", "November", "December"];

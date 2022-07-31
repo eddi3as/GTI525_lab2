@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { CompteurCtrl } from '../controller/compteurCtrl'
 import { Utils } from '../utils/utils';
+import * as Auth from '../middleware/auth.middleware'
 
 export class CompteurRouter {
   private _router: Router;
@@ -72,9 +73,9 @@ export class CompteurRouter {
   }
 
   init() {
-    this._router.get('/compteurs', this.allCompteurs.bind(this));
-    this._router.get('/compteurs/:id', this.getCompteur.bind(this));
-    this._router.get('/compteurs/:id/passages', this.getCompteurStats.bind(this));
+    this._router.get('/compteurs', Auth.authorize(), this.allCompteurs.bind(this));
+    this._router.get('/compteurs/:id', Auth.authorize(), this.getCompteur.bind(this));
+    this._router.get('/compteurs/:id/passages', Auth.authorize(), this.getCompteurStats.bind(this));
   }
 }
 

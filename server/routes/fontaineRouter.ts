@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express'
 import { FontaineCtrl } from '../controller/fontaineCtrl'
 import Fontaine from '../models/fontaine'
-import { ObjectId } from "mongodb"
+import * as Auth from '../middleware/auth.middleware'
 
 export class FontaineRouter {
   private _router: Router;
@@ -76,9 +76,9 @@ export class FontaineRouter {
      * endpoints.
      */
   init() {
-    this._router.get('/fontaines', this.getAllFontaines.bind(this));
-    this._router.get('/fontaines/:id', this.getFontaine.bind(this));
-    this._router.post('/fontaines', this.ajoutFontaine.bind(this));
+    this._router.get('/fontaines', Auth.authorize(), this.getAllFontaines.bind(this));
+    this._router.get('/fontaines/:id', Auth.authorize(), this.getFontaine.bind(this));
+    this._router.post('/fontaines', Auth.authorize(), this.ajoutFontaine.bind(this));
   }
 
 }

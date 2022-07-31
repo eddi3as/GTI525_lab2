@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express'
 import { PointInteretCtrl } from '../controller/pointinteretCtrl'
 import PointInteret from '../models/pointinteret'
+import * as Auth from '../middleware/auth.middleware'
 
 export class PointInteretRouter {
   private _router: Router;
@@ -83,9 +84,9 @@ export class PointInteretRouter {
   }
 
   init() {
-    this._router.get('/pointsdinteret', this.getAllPointsInteret.bind(this));
-    this._router.get('/pointsdinteret/:id', this.getPointInteret.bind(this));
-    this._router.post('/pointsdinteret', this.addPointInteret.bind(this));
+    this._router.get('/pointsdinteret', Auth.authorize(), this.getAllPointsInteret.bind(this));
+    this._router.get('/pointsdinteret/:id', Auth.authorize(), this.getPointInteret.bind(this));
+    this._router.post('/pointsdinteret', Auth.authorize(), this.addPointInteret.bind(this));
   }
 }
 
