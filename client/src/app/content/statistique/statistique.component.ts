@@ -40,7 +40,7 @@ export class StatistiqueComponent implements OnInit {
                         dateFrom: this.dateFrom,
                         dateTo: this.dateTo
                     },
-                    result: data.result,
+                    result: JSON.parse(data.result),
                     filter: "Jour"
                 } 
             });

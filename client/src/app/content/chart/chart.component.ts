@@ -41,8 +41,8 @@ export class ChartComponent implements OnInit {
         let info : StatsSearch = {
             borne_id: this.borne_id,
             borne_name: this.borne_name,
-            debut: this.dateFrom,
-            fin: this.dateTo
+            debut: this.dateFrom.replace(/-/g, ""),
+            fin: this.dateTo.replace(/-/g, "")
         };
 
         this.service.getStats(info).subscribe((data: any) => {
@@ -55,6 +55,8 @@ export class ChartComponent implements OnInit {
             });
         });
         this.createChart();
+        
+        this.ngxService.hide();
     }
 
     retour() {
@@ -112,44 +114,61 @@ export class ChartComponent implements OnInit {
     }
 
     private createChart() {
-        if(this.chart) this.chart.destroy()
-        let usage: number[] = [0]
-        let dates: string[] = ["0"]
+        if(this.chart) this.chart.destroy();
+        let usage: number[] = [0];
+        let dates: string[] = [];
 
         if(this.filter === "Jour") {
-            this.stats.forEach(i => {//TODO need to parse stats 
-                dates.push(moment(i.Date).toDate().getDate().toString())
-                usage.push(i.count)
-            })
+            let start = 0;
+            let count = 0;
+            let previousMonth = 0;
+            let debut = true;
+            this.stats.forEach(obj => {
+                let day = Number.parseInt(obj.Date.toString().substring(8, 10));
+                let month = Number.parseInt(obj.Date.toString().substring(5, 7));
+                if(day > start){
+                    dates.push(obj.Date.toString().substring(0, 10));
+                    count = 0;
+                    start = day;
+                    count += Number.parseInt(obj.count);
+                    if(!debut)
+                        usage.push(count);
+                }else if(month !== previousMonth){
+                    start = day;
+                }
+                debut = false;
+                count += Number.parseInt(obj.count);
+                previousMonth = month;
+            });
         }
         if(this.filter === "Semaine") {
-            let usage_index = 0
-            let previous_day = 0
+            let usage_index = 0;
+            let previous_day = 0;
             this.stats.forEach(i => {
-                let current_day: number = moment(i.Date).toDate().getDay()
+                let current_day: number = moment(i.Date).toDate().getDay();
                 if(current_day < previous_day) {
-                    usage_index++
-                    dates.push(usage_index.toString())
-                    usage[usage_index] = 0
+                    usage_index++;
+                    dates.push(i.Date.toString().substring(0, 10));
+                    usage[usage_index] = 0;
                 }
-                if(i.count) usage[usage_index] = usage[usage_index] + Number(i.count)
-                previous_day = current_day
+                if(i.count) usage[usage_index] = usage[usage_index] + Number(i.count);
+                previous_day = current_day;
             })
         }
         if(this.filter === "Mois") {
             this.stats.forEach(i => {
-                let current_month: number = moment(i.Date).toDate().getMonth()
-                dates[current_month] = moment(i.Date).format("MM").toString()
+                let current_month: number = moment(i.Date).toDate().getMonth();
+                dates[current_month] = moment(i.Date).format("MM").toString();
 
                 if(usage.length < dates.length) {
                     for(let j = 0; j < dates.length; j++) {
-                        usage.push(0)
+                        usage.push(0);
                     }
                 }
 
                 this.stats.forEach(j => {
                     if(j.count) {
-                        usage[current_month] = usage[current_month] + Number(j.count)
+                        usage[current_month] = usage[current_month] + Number(j.count);
                     }
                 })
             })
@@ -158,7 +177,7 @@ export class ChartComponent implements OnInit {
         const data = {
             labels: dates,
             datasets: [{
-                label: 'My First dataset',
+                label: this.borne_name,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 barPercentage: 1,

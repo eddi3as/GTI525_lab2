@@ -10,10 +10,10 @@ import { pointToModel } from 'src/utils/utils'
   styleUrls: ['./reparation-velo.component.css']
 })
 export class ReparationVeloComponent implements OnInit {
-    ateliers: any[] = []
-    fnt_arr: any
-    showMoreInfo: boolean = false
-    selectedAtelier: any
+    ateliers: any[] = [];
+    fnt_arr: any;
+    showMoreInfo: boolean = false;
+    selectedAtelier: any;
   
     constructor(private service2: AtelierService,
                 private service: PointInteretService,
@@ -36,5 +36,9 @@ export class ReparationVeloComponent implements OnInit {
 
     getSelected() {
         return this.selectedAtelier
+    }
+
+    setHeight() {
+        return this.ateliers.length > 10 ? "full-table-apply" : "";
     }
 }

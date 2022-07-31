@@ -87,6 +87,7 @@ export function fontainesToModel(lines: any[]): Fontaine[]{
 export function pointToModel(lines: any[]): PointInteret[]{
     let objs: PointInteret[] = [];
     lines.forEach(obj => {
+      let type = obj.Type === undefined ? 'fontaine' : obj.Type;
       let etat = obj.Etat === undefined ? '' : obj.Etat;
       let near = obj.Proximité_jeux_repère === undefined ? obj.Proximite_jeux_repere : obj.Proximité_jeux_repère;
       let pt: PointInteret = {
@@ -103,7 +104,7 @@ export function pointToModel(lines: any[]): PointInteret[]{
         y: obj.Y,
         longitude: obj.Longitude,
         latitude: obj.Latitude,
-        type: obj.Type
+        type: type
       };
       objs.push(pt);
     });

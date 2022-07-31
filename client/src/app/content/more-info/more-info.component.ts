@@ -9,29 +9,19 @@ import * as leaf from 'leaflet';
 })
 export class MoreInfoComponent implements OnInit {
   @Input()
-  fontaine!: any;
-  @Input()
-  atelier!: any;
-  @Input()
   point!: any;
   private map!: leaf.Map;
   private mapTiles!: leaf.TileLayer;
   private mapMarker!: leaf.Marker;
-  @Input()
-  categoryPointInteret!: string; // fontaine, atelier
 
   constructor(private service: MapService) { }
 
   ngOnInit(): void {
-    this.categoryPointInteret = this.point !== undefined ? 
-                                                (this.point.type === undefined ? 'fontaine' : this.point.type)
-                                                : this.categoryPointInteret;
     this.initMap();
   }
   
   ngOnChanges() {
     if (this.map) {
-      this.categoryPointInteret = this.point !== undefined ? this.point.type : this.categoryPointInteret;
       this.validateType();
     }
   }
@@ -53,9 +43,9 @@ export class MoreInfoComponent implements OnInit {
   }
   
   private validateType() {
-    if (this.categoryPointInteret === "atelier") {
+    if (this.point.type === "atelier") {
       this.checkAddress();
-    } else if (this.categoryPointInteret === "fontaine") {
+    } else if (this.point.type === "fontaine") {
       this.placeMarker(this.point.latitude, this.point.longitude); //Fontaine
     }
   }

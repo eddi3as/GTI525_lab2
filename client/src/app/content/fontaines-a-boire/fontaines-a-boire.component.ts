@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { fontainesToModel } from 'src/utils/utils'
+import { pointToModel } from 'src/utils/utils'
 import { FontaineService } from 'src/app/services/fontaines.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { PointInteretService } from 'src/app/services/pointinteret.service'
@@ -20,9 +20,8 @@ export class FontainesABoireComponent implements OnInit {
   
     async ngOnInit() {
         this.ngxService.show();
-        
         this.service.getPointFontaines().subscribe((data: any) => {
-            this.fontaines = fontainesToModel(data.result);
+            this.fontaines = pointToModel(data.result);
             this.ngxService.hide();
         });
         

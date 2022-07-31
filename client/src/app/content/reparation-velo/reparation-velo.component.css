@@ -3,7 +3,7 @@
     background-color: white;
     padding: 0.5em;
 }
-.table {
+.full-table-apply {
     display:block;
     margin-top: 2em;
     width: 98%;
@@ -22,10 +22,4 @@
 }
 .stats-search-btn:hover {
     opacity: 1;
-}
-
-
-
-#sort-order {
-    border:none;
 }
