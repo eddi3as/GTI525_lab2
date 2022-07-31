@@ -1,7 +1,5 @@
 import { collections } from '../service/database.service'
 import PointInteret from '../models/pointinteret';
-import Fontaine from '../models/fontaine';
-import { Utils } from '../utils/utils';
 
 export class PointInteretCtrl {
 
