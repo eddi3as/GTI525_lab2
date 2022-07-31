@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Atelier } from '../models/atelier'
-import { PointInteret } from '../models/pointinteret';
 import { PointInteretDTO } from '../models/pointinteretDTO';
 
 @Injectable({
@@ -19,7 +17,7 @@ export class PointInteretService {
         return this.http.get(this.url);
     }
 
-    getPointFontaines() {
+    getFontaines() {
         return this.http.get(this.url + this.fontaineURL);
     }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CSVService } from '../services/csv.service';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +7,6 @@ import { CSVService } from '../services/csv.service';
 })
 export class HeaderComponent implements OnInit {
     logoPath: string = "assets/logo.png"
-    constructor(private csvService: CSVService) { }
-
-    async ngOnInit() {
-      await this.csvService.getCompteurs();
-      await this.csvService.getFontaines();
-    }
-
+    constructor() { }
+    ngOnInit() {}
 }
