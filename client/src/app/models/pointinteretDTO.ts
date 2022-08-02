@@ -7,4 +7,5 @@ export interface PointInteretDTO {
     longitude: number;
     latitude: number;
     type: string;
+    adress: string;
 }

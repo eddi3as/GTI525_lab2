@@ -14,5 +14,6 @@ export default class PointInteret {
         public Y: number, 
         public Longitude: number, 
         public Latitude: number, 
-        public Type: string) {}
+        public Type: string,
+        public Adress: string) {}
 }

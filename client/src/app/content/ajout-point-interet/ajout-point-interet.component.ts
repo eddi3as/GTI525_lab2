@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { PointInteretService } from 'src/app/services/pointinteret.service';
 import { PointInteretDTO } from 'src/app/models/pointinteretDTO';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-ajout-point-interet',
@@ -23,6 +24,7 @@ export class AjoutPointInteretComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private ngxService: NgxSpinnerService,
         private service: PointInteretService) { }
 
     ngOnInit(): void {
@@ -32,6 +34,7 @@ export class AjoutPointInteretComponent implements OnInit {
     }
 
     public ajoutPointInteret(): void {
+        this.ngxService.show();
         let id = Math.floor(Math.random() * 100001);
         let type = this.selectedType === this.types[0] ? 'fontaine' : 'atelier';
         let point: PointInteretDTO = {
@@ -42,14 +45,18 @@ export class AjoutPointInteretComponent implements OnInit {
             comment: this.remarque,
             latitude: this.latitude,
             longitude: this.longitude,
-            type: type
+            type: type,
+            adress: this.adresse
         };
 
-        this.service.insertPointInteret(point);
+        this.service.insertPointInteret(point).subscribe((data) =>{
+            this.ngxService.hide();
+            this.router.navigate(['/']);
+        });
     }
 
     public annuler(): void {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
     }
 
 }

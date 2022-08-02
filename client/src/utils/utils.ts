@@ -90,12 +90,13 @@ export function pointToModel(lines: any[]): PointInteret[]{
       let type = obj.Type === undefined ? 'fontaine' : obj.Type;
       let etat = obj.Etat === undefined ? '' : obj.Etat;
       let near = obj.Proximité_jeux_repère === undefined ? obj.Proximite_jeux_repere : obj.Proximité_jeux_repère;
+      let adress = obj.Intersection === undefined || obj.Intersection === '' ? obj.Adress : obj.Intersection;
       let pt: PointInteret = {
         id: obj.ID,
         neighbourhood: obj.Arrondissement,
         parc_name: obj.Nom_parc_lieu,
         near_site: near,
-        intersection: obj.Intersection,
+        intersection: adress,
         state: etat,
         install_date: obj.Date_installation,
         comment: obj.Remarque,

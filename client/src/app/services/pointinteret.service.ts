@@ -32,16 +32,16 @@ export class PointInteretService {
     insertPointInteret(pt: PointInteretDTO) {
         const headers = authHeader();
         let new_id = -1
-        this.http.post<PointInteretDTO>(this.url, {
-            arrondissement: pt.neighbourhood,
-            nom_lieu: pt.parc_name,
-            date_installation: pt.install_date,
-            remarques: pt.comment,
-            adresse: pt.comment,
-            id: pt.id
-        }, headers).subscribe(data => {
-            new_id = data.id
-        })
-        return new_id
+        return this.http.post<PointInteretDTO>(this.url, {
+            id: pt.id,
+            neighbourhood: pt.neighbourhood,
+            parc_name: pt.parc_name,
+            install_date: pt.install_date,
+            comment: pt.comment,
+            longitude: pt.longitude,
+            latitude: pt.latitude,
+            type: pt.type,
+            adress: pt.adress
+        }, headers);
     }
 }

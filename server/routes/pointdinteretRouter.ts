@@ -72,7 +72,8 @@ export class PointInteretRouter {
       1, 
       parseFloat(req.body.longitude), 
       parseFloat(req.body.latitude),
-      req.body.type
+      req.body.type,
+      req.body.adress
     );
 
     await this._pntCtrl.addPointInteret(pointint);
